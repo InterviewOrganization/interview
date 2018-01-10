@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{435D3E9E-E76F-411E-B598-99B8C2964CD9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>InterviewDb</RootNamespace>
+    <AssemblyName>InterviewDb</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevOne.Security.Cryptography.BCrypt">
+      <HintPath>..\..\packages\BCrypt.1.0.0.0\lib\DevOne.Security.Cryptography.BCrypt.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=3.1.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\NLog.3.1.0.0\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="InterviewQuestions.cs" />
+    <Compile Include="Model\Accounting.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AccountingClearanceType.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AccountingType.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Action.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\BaseCard.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\BaseCardType.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Country.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Currency.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Game.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\IGameUserMachineSiteAssignment.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Language.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Machine.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MachineSession.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MachineSessionEndType.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MachineSessionLog.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MachineSessionLogAction.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MachineType.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Organization.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\OrganizationState.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\OrganizationType.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Partner.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Player.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PlayerRole.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Right.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Role.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Session.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SessionLog.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SessionType.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Setting.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\spAccountancyDetailResult.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\spFetchChildOrganizations_Result.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbFactory.cs" />
+    <Compile Include="Model\LionDbModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LionDbModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LionDbModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LionDbModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LionDbModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LionDbModel.Context.ConString.cs" />
+    <Compile Include="Model\Staff.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\sysdiagram.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\WebSession.cs">
+      <DependentUpon>LionDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="Model\LionDbModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LionDbModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\LionDbModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LionDbModel.edmx</DependentUpon>
+      <LastGenOutput>LionDbModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Model\LionDbModel.edmx.diagram">
+      <DependentUpon>LionDbModel.edmx</DependentUpon>
+    </None>
+    <None Include="Model\LionDbModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LionDbModel.edmx</DependentUpon>
+      <LastGenOutput>LionDbModel.cs</LastGenOutput>
+    </None>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

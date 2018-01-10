@@ -1,0 +1,2644 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LionDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Accounting">
+          <Key>
+            <PropertyRef Name="SessionLogID" />
+          </Key>
+          <Property Name="SessionLogID" Type="bigint" Nullable="false" />
+          <Property Name="AccountingTypeID" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="int" Nullable="false" />
+          <Property Name="AccountingTimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="CurrencyID" Type="int" Nullable="false" />
+          <Property Name="ForCardBalance" Type="int" Nullable="false" />
+          <Property Name="Trid" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="AccountingClearanceType">
+          <Key>
+            <PropertyRef Name="ClearanceTypeID" />
+          </Key>
+          <Property Name="ClearanceTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClearanceTypeName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AccountingType">
+          <Key>
+            <PropertyRef Name="AccountingTypeID" />
+          </Key>
+          <Property Name="AccountingTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountingTypeName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AccountingTypeDescription" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Action">
+          <Key>
+            <PropertyRef Name="ActionID" />
+          </Key>
+          <Property Name="ActionID" Type="int" Nullable="false" />
+          <Property Name="ActionName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ActionDescription" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="BaseCard">
+          <Key>
+            <PropertyRef Name="BaseCardID" />
+          </Key>
+          <Property Name="BaseCardID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CardBarCode" Type="bigint" Nullable="false" />
+          <Property Name="CardPin" Type="char" MaxLength="60" Nullable="false" />
+          <Property Name="CardTypeID" Type="int" Nullable="false" />
+          <Property Name="MachineID" Type="int" />
+          <Property Name="TimeStampLocked" Type="datetime" />
+          <Property Name="RoleRightsChangedTimestamp" Type="datetime" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="WebSessionToken" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="BaseCardType">
+          <Key>
+            <PropertyRef Name="CardTypeID" />
+          </Key>
+          <Property Name="CardTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CardTypeName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="int" Nullable="false" />
+          <Property Name="CountryName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CountryShortName" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="CurrencyID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="CurrencyID" />
+          </Key>
+          <Property Name="CurrencyID" Type="int" Nullable="false" />
+          <Property Name="CurrencyName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CurrencyShortName" Type="char" MaxLength="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="GameID" />
+          </Key>
+          <Property Name="GameID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PartnerID" Type="int" Nullable="false" />
+          <Property Name="GameName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="GameDescription" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="IGameUserMachineSiteAssignment">
+          <Key>
+            <PropertyRef Name="BaseCardID" />
+          </Key>
+          <Property Name="BaseCardID" Type="int" Nullable="false" />
+          <Property Name="MachineID" Type="int" Nullable="false" />
+          <Property Name="SiteId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="LanguageID" />
+          </Key>
+          <Property Name="LanguageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegionCode" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LanguageName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Machine">
+          <Key>
+            <PropertyRef Name="MachineID" />
+          </Key>
+          <Property Name="MachineID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MachineTypeID" Type="int" Nullable="false" />
+          <Property Name="ParentOrganizationID" Type="int" Nullable="false" />
+          <Property Name="MachineName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="MachinePassword" Type="nvarchar" MaxLength="100" />
+          <Property Name="SharedSecret" Type="nvarchar" MaxLength="100" />
+          <Property Name="MAC" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IP" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="LastPoll" Type="datetime" />
+          <Property Name="TeamviewerId" Type="varchar" MaxLength="256" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="CurrencyID" Type="int" Nullable="false" />
+          <Property Name="TimestampLocked" Type="datetime" />
+          <Property Name="GameNR" Type="int" />
+          <Property Name="PartnerNR" Type="int" />
+        </EntityType>
+        <EntityType Name="MachineSession">
+          <Key>
+            <PropertyRef Name="MachineSessionID" />
+          </Key>
+          <Property Name="MachineSessionID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MachineID" Type="int" Nullable="false" />
+          <Property Name="SessionStart" Type="datetime" Nullable="false" />
+          <Property Name="SessionEnd" Type="datetime" />
+          <Property Name="SessionEndTypeID" Type="int" />
+        </EntityType>
+        <EntityType Name="MachineSessionEndType">
+          <Key>
+            <PropertyRef Name="SessionEndTypeID" />
+          </Key>
+          <Property Name="SessionEndTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SessionEndName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MachineSessionLog">
+          <Key>
+            <PropertyRef Name="MachineSessionLogID" />
+          </Key>
+          <Property Name="MachineSessionLogID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MachineSessionID" Type="bigint" Nullable="false" />
+          <Property Name="MachineSessionLogActionID" Type="int" Nullable="false" />
+          <Property Name="LogTimeStamp" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MachineSessionLogAction">
+          <Key>
+            <PropertyRef Name="MachineSessionLogActionID" />
+          </Key>
+          <Property Name="MachineSessionLogActionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MachineSessionLogName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MachineType">
+          <Key>
+            <PropertyRef Name="MachineTypeID" />
+          </Key>
+          <Property Name="MachineTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MachineTypeName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="OrganizationID" />
+          </Key>
+          <Property Name="OrganizationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrganizationName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OrganizationTypeID" Type="int" Nullable="false" />
+          <Property Name="ParentId" Type="int" Nullable="false" />
+          <Property Name="CountryID" Type="int" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="Street" Type="varchar" MaxLength="50" />
+          <Property Name="ZIP" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="LockedTimeStamp" Type="datetime" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="CurrencyID" Type="int" Nullable="false" />
+          <Property Name="SiteId" Type="int" />
+          <Property Name="B2DWebShopId" Type="int" />
+          <Property Name="OrganizationStateID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrganizationState">
+          <Key>
+            <PropertyRef Name="OrganizationStateID" />
+          </Key>
+          <Property Name="OrganizationStateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrganizationStateName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrganizationType">
+          <Key>
+            <PropertyRef Name="OrganizationTypeID" />
+          </Key>
+          <Property Name="OrganizationTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrganizationTypeName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Partner">
+          <Key>
+            <PropertyRef Name="PartnerID" />
+          </Key>
+          <Property Name="PartnerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PartnerName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PartnerDescription" Type="varchar" MaxLength="150" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="BaseCardID" />
+          </Key>
+          <Property Name="BaseCardID" Type="int" Nullable="false" />
+          <Property Name="OrganizationID" Type="int" Nullable="false" />
+          <Property Name="PlayerRoleID" Type="int" Nullable="false" />
+          <Property Name="CurrencyID" Type="int" Nullable="false" />
+          <Property Name="LanguageID" Type="int" Nullable="false" />
+          <Property Name="CountryID" Type="int" Nullable="false" />
+          <Property Name="Balance" Type="int" Nullable="false" />
+          <Property Name="FailedPinLogins" Type="int" Nullable="false" />
+          <Property Name="Alias" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="80" />
+          <Property Name="Password" Type="char" MaxLength="60" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="Nationality" Type="varchar" MaxLength="50" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="Street" Type="varchar" MaxLength="50" />
+          <Property Name="ZIP" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="IsMale" Type="bit" Nullable="false" />
+          <Property Name="IGameAccountingReservationSessionLogNR" Type="bigint" />
+          <Property Name="SessionNR" Type="bigint" />
+          <Property Name="FailedLogoutAttempts" Type="int" />
+        </EntityType>
+        <EntityType Name="PlayerRole">
+          <Key>
+            <PropertyRef Name="PlayerRoleID" />
+          </Key>
+          <Property Name="PlayerRoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlayerRoleName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Right">
+          <Key>
+            <PropertyRef Name="RightID" />
+          </Key>
+          <Property Name="RightID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RightName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RightDescription" Type="varchar" MaxLength="400" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="400" />
+        </EntityType>
+        <EntityType Name="Session">
+          <Key>
+            <PropertyRef Name="SessionID" />
+          </Key>
+          <Property Name="SessionID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SessionStart" Type="datetime" Nullable="false" />
+          <Property Name="SessionEnd" Type="datetime" />
+          <Property Name="BaseCardID" Type="int" Nullable="false" />
+          <Property Name="MachineSessionID" Type="bigint" />
+          <Property Name="SessionTypeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SessionLog">
+          <Key>
+            <PropertyRef Name="SessionLogID" />
+          </Key>
+          <Property Name="SessionLogID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SessionID" Type="bigint" Nullable="false" />
+          <Property Name="ActionID" Type="int" Nullable="false" />
+          <Property Name="MachineID" Type="int" />
+          <Property Name="GameID" Type="int" />
+          <Property Name="LogTimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="OrganizationID" Type="int" />
+          <Property Name="ForBaseCardID" Type="int" />
+        </EntityType>
+        <EntityType Name="SessionType">
+          <Key>
+            <PropertyRef Name="SessionTypeID" />
+          </Key>
+          <Property Name="SessionTypeID" Type="int" Nullable="false" />
+          <Property Name="SessionTypeName" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Settings">
+          <Key>
+            <PropertyRef Name="SettingID" />
+          </Key>
+          <Property Name="SettingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegionID" Type="int" Nullable="false" />
+          <Property Name="LastTimeOutCheck" Type="datetime" />
+          <Property Name="OtcExpirationLimit" Type="int" />
+          <Property Name="OtcExpirationThreshold" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="PayOutLimit" Type="int" />
+          <Property Name="PayInLimit" Type="int" />
+          <Property Name="LossLimit" Type="int" />
+          <Property Name="DesiredHold" Type="int" Nullable="false" />
+          <Property Name="DisplayedCoinSymbol" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="MaxOrganizationLoss" Type="int" />
+          <Property Name="AllowActionGames" Type="bit" Nullable="false" />
+          <Property Name="MaxGamble" Type="int" Nullable="false" />
+          <Property Name="AllowTurbo" Type="bit" Nullable="false" />
+          <Property Name="McmPayInLimit" Type="int" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="BaseCardID" />
+          </Key>
+          <Property Name="BaseCardID" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastPoll" Type="datetime" />
+          <Property Name="Street" Type="varchar" MaxLength="100" />
+          <Property Name="ZIP" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="LanguageID" Type="int" Nullable="false" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="PasswordHash" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="CountryID" Type="int" Nullable="false" />
+          <Property Name="Gender" Type="char" MaxLength="1" />
+          <Property Name="Fullname" Type="varchar" MaxLength="102" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="WebSession">
+          <Key>
+            <PropertyRef Name="SessionID" />
+          </Key>
+          <Property Name="SessionID" Type="bigint" Nullable="false" />
+          <Property Name="WebToken" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OrganizationID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Accounting_AccountingType">
+          <End Role="AccountingType" Type="Self.AccountingType" Multiplicity="1" />
+          <End Role="Accounting" Type="Self.Accounting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountingType">
+              <PropertyRef Name="AccountingTypeID" />
+            </Principal>
+            <Dependent Role="Accounting">
+              <PropertyRef Name="AccountingTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accounting_Currency">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+          <End Role="Accounting" Type="Self.Accounting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="CurrencyID" />
+            </Principal>
+            <Dependent Role="Accounting">
+              <PropertyRef Name="CurrencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accounting_SessionLog">
+          <End Role="SessionLog" Type="Self.SessionLog" Multiplicity="1" />
+          <End Role="Accounting" Type="Self.Accounting" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="SessionLog">
+              <PropertyRef Name="SessionLogID" />
+            </Principal>
+            <Dependent Role="Accounting">
+              <PropertyRef Name="SessionLogID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BaseCard_BaseCardType">
+          <End Role="BaseCardType" Type="Self.BaseCardType" Multiplicity="1" />
+          <End Role="BaseCard" Type="Self.BaseCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BaseCardType">
+              <PropertyRef Name="CardTypeID" />
+            </Principal>
+            <Dependent Role="BaseCard">
+              <PropertyRef Name="CardTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_BaseCard_WebSession' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_BaseCard_WebSession" />-->
+        <Association Name="FK_Country_Currency">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+          <End Role="Country" Type="Self.Country" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="CurrencyID" />
+            </Principal>
+            <Dependent Role="Country">
+              <PropertyRef Name="CurrencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_Partner">
+          <End Role="Partner" Type="Self.Partner" Multiplicity="1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partner">
+              <PropertyRef Name="PartnerID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="PartnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IGameUserMachineSiteAssignment_Machine">
+          <End Role="Machine" Type="Self.Machine" Multiplicity="1" />
+          <End Role="IGameUserMachineSiteAssignment" Type="Self.IGameUserMachineSiteAssignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="MachineID" />
+            </Principal>
+            <Dependent Role="IGameUserMachineSiteAssignment">
+              <PropertyRef Name="MachineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Machine_Currency">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+          <End Role="Machine" Type="Self.Machine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="CurrencyID" />
+            </Principal>
+            <Dependent Role="Machine">
+              <PropertyRef Name="CurrencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Machine_Game">
+          <End Role="Game" Type="Self.Game" Multiplicity="0..1" />
+          <End Role="Machine" Type="Self.Machine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="GameID" />
+            </Principal>
+            <Dependent Role="Machine">
+              <PropertyRef Name="GameNR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Machine_MachineType">
+          <End Role="MachineType" Type="Self.MachineType" Multiplicity="1" />
+          <End Role="Machine" Type="Self.Machine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MachineType">
+              <PropertyRef Name="MachineTypeID" />
+            </Principal>
+            <Dependent Role="Machine">
+              <PropertyRef Name="MachineTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Machine_Organization">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="Machine" Type="Self.Machine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="OrganizationID" />
+            </Principal>
+            <Dependent Role="Machine">
+              <PropertyRef Name="ParentOrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Machine_Partner">
+          <End Role="Partner" Type="Self.Partner" Multiplicity="0..1" />
+          <End Role="Machine" Type="Self.Machine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partner">
+              <PropertyRef Name="PartnerID" />
+            </Principal>
+            <Dependent Role="Machine">
+              <PropertyRef Name="PartnerNR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MachineSession_Machine">
+          <End Role="Machine" Type="Self.Machine" Multiplicity="1" />
+          <End Role="MachineSession" Type="Self.MachineSession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="MachineID" />
+            </Principal>
+            <Dependent Role="MachineSession">
+              <PropertyRef Name="MachineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MachineSession_SessionEndType">
+          <End Role="MachineSessionEndType" Type="Self.MachineSessionEndType" Multiplicity="0..1" />
+          <End Role="MachineSession" Type="Self.MachineSession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MachineSessionEndType">
+              <PropertyRef Name="SessionEndTypeID" />
+            </Principal>
+            <Dependent Role="MachineSession">
+              <PropertyRef Name="SessionEndTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MachineSessionLog_MachineSession">
+          <End Role="MachineSession" Type="Self.MachineSession" Multiplicity="1" />
+          <End Role="MachineSessionLog" Type="Self.MachineSessionLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MachineSession">
+              <PropertyRef Name="MachineSessionID" />
+            </Principal>
+            <Dependent Role="MachineSessionLog">
+              <PropertyRef Name="MachineSessionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MachineSessionLog_MachineSessionLogAction">
+          <End Role="MachineSessionLogAction" Type="Self.MachineSessionLogAction" Multiplicity="1" />
+          <End Role="MachineSessionLog" Type="Self.MachineSessionLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MachineSessionLogAction">
+              <PropertyRef Name="MachineSessionLogActionID" />
+            </Principal>
+            <Dependent Role="MachineSessionLog">
+              <PropertyRef Name="MachineSessionLogActionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Organization_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Organization_Currency">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+          <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="CurrencyID" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="CurrencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Organization_OrganizationState">
+          <End Role="OrganizationState" Type="Self.OrganizationState" Multiplicity="1" />
+          <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrganizationState">
+              <PropertyRef Name="OrganizationStateID" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="OrganizationStateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Organization_OrganizationType">
+          <End Role="OrganizationType" Type="Self.OrganizationType" Multiplicity="1" />
+          <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrganizationType">
+              <PropertyRef Name="OrganizationTypeID" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="OrganizationTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_BaseCard">
+          <End Role="BaseCard" Type="Self.BaseCard" Multiplicity="1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="BaseCard">
+              <PropertyRef Name="BaseCardID" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="BaseCardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_Currency">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="CurrencyID" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="CurrencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_IGameAccounting">
+          <End Role="SessionLog" Type="Self.SessionLog" Multiplicity="0..1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SessionLog">
+              <PropertyRef Name="SessionLogID" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="IGameAccountingReservationSessionLogNR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_Language">
+          <End Role="Language" Type="Self.Language" Multiplicity="1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="LanguageID" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="LanguageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_Organization">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="OrganizationID" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_PlayerRole">
+          <End Role="PlayerRole" Type="Self.PlayerRole" Multiplicity="1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlayerRole">
+              <PropertyRef Name="PlayerRoleID" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="PlayerRoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_Session">
+          <End Role="Session" Type="Self.Session" Multiplicity="0..1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Session">
+              <PropertyRef Name="SessionID" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="SessionNR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Session_BaseCard">
+          <End Role="BaseCard" Type="Self.BaseCard" Multiplicity="1" />
+          <End Role="Session" Type="Self.Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BaseCard">
+              <PropertyRef Name="BaseCardID" />
+            </Principal>
+            <Dependent Role="Session">
+              <PropertyRef Name="BaseCardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Session_MachineSession">
+          <End Role="MachineSession" Type="Self.MachineSession" Multiplicity="0..1" />
+          <End Role="Session" Type="Self.Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MachineSession">
+              <PropertyRef Name="MachineSessionID" />
+            </Principal>
+            <Dependent Role="Session">
+              <PropertyRef Name="MachineSessionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Session_SessionType">
+          <End Role="SessionType" Type="Self.SessionType" Multiplicity="1" />
+          <End Role="Session" Type="Self.Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SessionType">
+              <PropertyRef Name="SessionTypeID" />
+            </Principal>
+            <Dependent Role="Session">
+              <PropertyRef Name="SessionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SessionLog_Action">
+          <End Role="Action" Type="Self.Action" Multiplicity="1" />
+          <End Role="SessionLog" Type="Self.SessionLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Action">
+              <PropertyRef Name="ActionID" />
+            </Principal>
+            <Dependent Role="SessionLog">
+              <PropertyRef Name="ActionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SessionLog_BaseCard">
+          <End Role="BaseCard" Type="Self.BaseCard" Multiplicity="0..1" />
+          <End Role="SessionLog" Type="Self.SessionLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BaseCard">
+              <PropertyRef Name="BaseCardID" />
+            </Principal>
+            <Dependent Role="SessionLog">
+              <PropertyRef Name="ForBaseCardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SessionLog_Game">
+          <End Role="Game" Type="Self.Game" Multiplicity="0..1" />
+          <End Role="SessionLog" Type="Self.SessionLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="GameID" />
+            </Principal>
+            <Dependent Role="SessionLog">
+              <PropertyRef Name="GameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SessionLog_Organization">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="0..1" />
+          <End Role="SessionLog" Type="Self.SessionLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="OrganizationID" />
+            </Principal>
+            <Dependent Role="SessionLog">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SessionLog_Session">
+          <End Role="Session" Type="Self.Session" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SessionLog" Type="Self.SessionLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Session">
+              <PropertyRef Name="SessionID" />
+            </Principal>
+            <Dependent Role="SessionLog">
+              <PropertyRef Name="SessionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SomeTestTable_BaseCard">
+          <End Role="BaseCard" Type="Self.BaseCard" Multiplicity="1" />
+          <End Role="IGameUserMachineSiteAssignment" Type="Self.IGameUserMachineSiteAssignment" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="BaseCard">
+              <PropertyRef Name="BaseCardID" />
+            </Principal>
+            <Dependent Role="IGameUserMachineSiteAssignment">
+              <PropertyRef Name="BaseCardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_BaseCard">
+          <End Role="BaseCard" Type="Self.BaseCard" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="BaseCard">
+              <PropertyRef Name="BaseCardID" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="BaseCardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Language">
+          <End Role="Language" Type="Self.Language" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="LanguageID" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="LanguageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebSession_Organization">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="WebSession" Type="Self.WebSession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="OrganizationID" />
+            </Principal>
+            <Dependent Role="WebSession">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebSession_Session">
+          <End Role="Session" Type="Self.Session" Multiplicity="1" />
+          <End Role="WebSession" Type="Self.WebSession" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Session">
+              <PropertyRef Name="SessionID" />
+            </Principal>
+            <Dependent Role="WebSession">
+              <PropertyRef Name="SessionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LionDbModelStoreContainer">
+          <EntitySet Name="Accounting" EntityType="Self.Accounting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountingClearanceType" EntityType="Self.AccountingClearanceType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountingType" EntityType="Self.AccountingType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Action" EntityType="Self.Action" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BaseCard" EntityType="Self.BaseCard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BaseCardType" EntityType="Self.BaseCardType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Game" EntityType="Self.Game" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IGameUserMachineSiteAssignment" EntityType="Self.IGameUserMachineSiteAssignment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Machine" EntityType="Self.Machine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MachineSession" EntityType="Self.MachineSession" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MachineSessionEndType" EntityType="Self.MachineSessionEndType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MachineSessionLog" EntityType="Self.MachineSessionLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MachineSessionLogAction" EntityType="Self.MachineSessionLogAction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MachineType" EntityType="Self.MachineType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Organization" EntityType="Self.Organization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrganizationState" EntityType="Self.OrganizationState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrganizationType" EntityType="Self.OrganizationType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Partner" EntityType="Self.Partner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Player" EntityType="Self.Player" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlayerRole" EntityType="Self.PlayerRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Right" EntityType="Self.Right" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Session" EntityType="Self.Session" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SessionLog" EntityType="Self.SessionLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SessionType" EntityType="Self.SessionType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WebSession" EntityType="Self.WebSession" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Accounting_AccountingType" Association="Self.FK_Accounting_AccountingType">
+            <End Role="AccountingType" EntitySet="AccountingType" />
+            <End Role="Accounting" EntitySet="Accounting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounting_Currency" Association="Self.FK_Accounting_Currency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="Accounting" EntitySet="Accounting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounting_SessionLog" Association="Self.FK_Accounting_SessionLog">
+            <End Role="SessionLog" EntitySet="SessionLog" />
+            <End Role="Accounting" EntitySet="Accounting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BaseCard_BaseCardType" Association="Self.FK_BaseCard_BaseCardType">
+            <End Role="BaseCardType" EntitySet="BaseCardType" />
+            <End Role="BaseCard" EntitySet="BaseCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Country_Currency" Association="Self.FK_Country_Currency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="Country" EntitySet="Country" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Partner" Association="Self.FK_Game_Partner">
+            <End Role="Partner" EntitySet="Partner" />
+            <End Role="Game" EntitySet="Game" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IGameUserMachineSiteAssignment_Machine" Association="Self.FK_IGameUserMachineSiteAssignment_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="IGameUserMachineSiteAssignment" EntitySet="IGameUserMachineSiteAssignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Machine_Currency" Association="Self.FK_Machine_Currency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="Machine" EntitySet="Machine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Machine_Game" Association="Self.FK_Machine_Game">
+            <End Role="Game" EntitySet="Game" />
+            <End Role="Machine" EntitySet="Machine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Machine_MachineType" Association="Self.FK_Machine_MachineType">
+            <End Role="MachineType" EntitySet="MachineType" />
+            <End Role="Machine" EntitySet="Machine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Machine_Organization" Association="Self.FK_Machine_Organization">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="Machine" EntitySet="Machine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Machine_Partner" Association="Self.FK_Machine_Partner">
+            <End Role="Partner" EntitySet="Partner" />
+            <End Role="Machine" EntitySet="Machine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MachineSession_Machine" Association="Self.FK_MachineSession_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="MachineSession" EntitySet="MachineSession" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MachineSession_SessionEndType" Association="Self.FK_MachineSession_SessionEndType">
+            <End Role="MachineSessionEndType" EntitySet="MachineSessionEndType" />
+            <End Role="MachineSession" EntitySet="MachineSession" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MachineSessionLog_MachineSession" Association="Self.FK_MachineSessionLog_MachineSession">
+            <End Role="MachineSession" EntitySet="MachineSession" />
+            <End Role="MachineSessionLog" EntitySet="MachineSessionLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MachineSessionLog_MachineSessionLogAction" Association="Self.FK_MachineSessionLog_MachineSessionLogAction">
+            <End Role="MachineSessionLogAction" EntitySet="MachineSessionLogAction" />
+            <End Role="MachineSessionLog" EntitySet="MachineSessionLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Organization_Country" Association="Self.FK_Organization_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Organization" EntitySet="Organization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Organization_Currency" Association="Self.FK_Organization_Currency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="Organization" EntitySet="Organization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Organization_OrganizationState" Association="Self.FK_Organization_OrganizationState">
+            <End Role="OrganizationState" EntitySet="OrganizationState" />
+            <End Role="Organization" EntitySet="Organization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Organization_OrganizationType" Association="Self.FK_Organization_OrganizationType">
+            <End Role="OrganizationType" EntitySet="OrganizationType" />
+            <End Role="Organization" EntitySet="Organization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_BaseCard" Association="Self.FK_Player_BaseCard">
+            <End Role="BaseCard" EntitySet="BaseCard" />
+            <End Role="Player" EntitySet="Player" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Country" Association="Self.FK_Player_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Player" EntitySet="Player" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Currency" Association="Self.FK_Player_Currency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="Player" EntitySet="Player" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_IGameAccounting" Association="Self.FK_Player_IGameAccounting">
+            <End Role="SessionLog" EntitySet="SessionLog" />
+            <End Role="Player" EntitySet="Player" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Language" Association="Self.FK_Player_Language">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="Player" EntitySet="Player" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Organization" Association="Self.FK_Player_Organization">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="Player" EntitySet="Player" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_PlayerRole" Association="Self.FK_Player_PlayerRole">
+            <End Role="PlayerRole" EntitySet="PlayerRole" />
+            <End Role="Player" EntitySet="Player" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Session" Association="Self.FK_Player_Session">
+            <End Role="Session" EntitySet="Session" />
+            <End Role="Player" EntitySet="Player" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Session_BaseCard" Association="Self.FK_Session_BaseCard">
+            <End Role="BaseCard" EntitySet="BaseCard" />
+            <End Role="Session" EntitySet="Session" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Session_MachineSession" Association="Self.FK_Session_MachineSession">
+            <End Role="MachineSession" EntitySet="MachineSession" />
+            <End Role="Session" EntitySet="Session" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Session_SessionType" Association="Self.FK_Session_SessionType">
+            <End Role="SessionType" EntitySet="SessionType" />
+            <End Role="Session" EntitySet="Session" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SessionLog_Action" Association="Self.FK_SessionLog_Action">
+            <End Role="Action" EntitySet="Action" />
+            <End Role="SessionLog" EntitySet="SessionLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SessionLog_BaseCard" Association="Self.FK_SessionLog_BaseCard">
+            <End Role="BaseCard" EntitySet="BaseCard" />
+            <End Role="SessionLog" EntitySet="SessionLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SessionLog_Game" Association="Self.FK_SessionLog_Game">
+            <End Role="Game" EntitySet="Game" />
+            <End Role="SessionLog" EntitySet="SessionLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SessionLog_Organization" Association="Self.FK_SessionLog_Organization">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="SessionLog" EntitySet="SessionLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SessionLog_Session" Association="Self.FK_SessionLog_Session">
+            <End Role="Session" EntitySet="Session" />
+            <End Role="SessionLog" EntitySet="SessionLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SomeTestTable_BaseCard" Association="Self.FK_SomeTestTable_BaseCard">
+            <End Role="BaseCard" EntitySet="BaseCard" />
+            <End Role="IGameUserMachineSiteAssignment" EntitySet="IGameUserMachineSiteAssignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_BaseCard" Association="Self.FK_Staff_BaseCard">
+            <End Role="BaseCard" EntitySet="BaseCard" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Country" Association="Self.FK_Staff_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Language" Association="Self.FK_Staff_Language">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebSession_Organization" Association="Self.FK_WebSession_Organization">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="WebSession" EntitySet="WebSession" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebSession_Session" Association="Self.FK_WebSession_Session">
+            <End Role="Session" EntitySet="Session" />
+            <End Role="WebSession" EntitySet="WebSession" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LionDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="LionDbEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="spFetchCommonOrganization" ReturnType="Collection(Int32)">
+            <Parameter Name="MachineID" Mode="In" Type="Int32" />
+            <Parameter Name="StaffBaseCardID" Mode="In" Type="Int32" />
+            <Parameter Name="PlayerBaseCardID" Mode="In" Type="Int32" />
+            <Parameter Name="OrganizationID" Mode="In" Type="Int32" />
+            <Parameter Name="CommonOrganizationID" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spFetchOrganizationForGamesAllowed" ReturnType="Collection(Int32)">
+            <Parameter Name="MachineID" Mode="In" Type="Int32" />
+            <Parameter Name="BaseCardID" Mode="In" Type="Int32" />
+            <Parameter Name="OrganizationID" Mode="In" Type="Int32" />
+            <Parameter Name="OrganizationIdForGameAllowed" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spFetchOrganizationLimits" ReturnType="Collection(Int32)">
+            <Parameter Name="OrganizationID" Mode="In" Type="Int32" />
+            <Parameter Name="McmPayInLimit" Mode="InOut" Type="Int32" />
+            <Parameter Name="PayInLimit" Mode="InOut" Type="Int32" />
+            <Parameter Name="PayOutLimit" Mode="InOut" Type="Int32" />
+            <Parameter Name="LossLimit" Mode="InOut" Type="Int32" />
+            <Parameter Name="DesiredHold" Mode="InOut" Type="Int32" />
+            <Parameter Name="DisplayedCoinSymbol" Mode="InOut" Type="String" />
+            <Parameter Name="MaxOrganizationLoss" Mode="InOut" Type="Int32" />
+            <Parameter Name="AllowActionGames" Mode="InOut" Type="Boolean" />
+            <Parameter Name="MaxGamble" Mode="InOut" Type="Int32" />
+            <Parameter Name="AllowTurbo" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="spFetchParentOrganizations" ReturnType="Collection(Int32)">
+          <Parameter Name="OrganizationID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spFetchChildOrganizations" ReturnType="Collection(LionDbModel.spFetchChildOrganizations_Result)">
+          <Parameter Name="OrganizationID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Accountings" EntityType="LionDbModel.Accounting" />
+          <EntitySet Name="AccountingClearanceTypes" EntityType="LionDbModel.AccountingClearanceType" />
+          <EntitySet Name="AccountingTypes" EntityType="LionDbModel.AccountingType" />
+          <EntitySet Name="Actions" EntityType="LionDbModel.Action" />
+          <EntitySet Name="BaseCards" EntityType="LionDbModel.BaseCard" />
+          <EntitySet Name="BaseCardTypes" EntityType="LionDbModel.BaseCardType" />
+          <EntitySet Name="Countries" EntityType="LionDbModel.Country" />
+          <EntitySet Name="Currencies" EntityType="LionDbModel.Currency" />
+          <EntitySet Name="Games" EntityType="LionDbModel.Game" />
+          <EntitySet Name="IGameUserMachineSiteAssignments" EntityType="LionDbModel.IGameUserMachineSiteAssignment" />
+          <EntitySet Name="Languages" EntityType="LionDbModel.Language" />
+          <EntitySet Name="Machines" EntityType="LionDbModel.Machine" />
+          <EntitySet Name="MachineSessions" EntityType="LionDbModel.MachineSession" />
+          <EntitySet Name="MachineSessionEndTypes" EntityType="LionDbModel.MachineSessionEndType" />
+          <EntitySet Name="MachineSessionLogs" EntityType="LionDbModel.MachineSessionLog" />
+          <EntitySet Name="MachineSessionLogActions" EntityType="LionDbModel.MachineSessionLogAction" />
+          <EntitySet Name="MachineTypes" EntityType="LionDbModel.MachineType" />
+          <EntitySet Name="Organizations" EntityType="LionDbModel.Organization" />
+          <EntitySet Name="OrganizationStates" EntityType="LionDbModel.OrganizationState" />
+          <EntitySet Name="OrganizationTypes" EntityType="LionDbModel.OrganizationType" />
+          <EntitySet Name="Partners" EntityType="LionDbModel.Partner" />
+          <EntitySet Name="Players" EntityType="LionDbModel.Player" />
+          <EntitySet Name="PlayerRoles" EntityType="LionDbModel.PlayerRole" />
+          <EntitySet Name="Rights" EntityType="LionDbModel.Right" />
+          <EntitySet Name="Roles" EntityType="LionDbModel.Role" />
+          <EntitySet Name="Sessions" EntityType="LionDbModel.Session" />
+          <EntitySet Name="SessionLogs" EntityType="LionDbModel.SessionLog" />
+          <EntitySet Name="SessionTypes" EntityType="LionDbModel.SessionType" />
+          <EntitySet Name="Settings" EntityType="LionDbModel.Setting" />
+          <EntitySet Name="Staffs" EntityType="LionDbModel.Staff" />
+          <EntitySet Name="sysdiagrams" EntityType="LionDbModel.sysdiagram" />
+          <EntitySet Name="WebSessions" EntityType="LionDbModel.WebSession" />
+          <AssociationSet Name="FK_Accounting_AccountingType" Association="LionDbModel.FK_Accounting_AccountingType">
+            <End Role="AccountingType" EntitySet="AccountingTypes" />
+            <End Role="Accounting" EntitySet="Accountings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounting_Currency" Association="LionDbModel.FK_Accounting_Currency">
+            <End Role="Currency" EntitySet="Currencies" />
+            <End Role="Accounting" EntitySet="Accountings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounting_SessionLog" Association="LionDbModel.FK_Accounting_SessionLog">
+            <End Role="SessionLog" EntitySet="SessionLogs" />
+            <End Role="Accounting" EntitySet="Accountings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SessionLog_Action" Association="LionDbModel.FK_SessionLog_Action">
+            <End Role="Action" EntitySet="Actions" />
+            <End Role="SessionLog" EntitySet="SessionLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BaseCard_BaseCardType" Association="LionDbModel.FK_BaseCard_BaseCardType">
+            <End Role="BaseCardType" EntitySet="BaseCardTypes" />
+            <End Role="BaseCard" EntitySet="BaseCards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_BaseCard" Association="LionDbModel.FK_Player_BaseCard">
+            <End Role="BaseCard" EntitySet="BaseCards" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Session_BaseCard" Association="LionDbModel.FK_Session_BaseCard">
+            <End Role="BaseCard" EntitySet="BaseCards" />
+            <End Role="Session" EntitySet="Sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SessionLog_BaseCard" Association="LionDbModel.FK_SessionLog_BaseCard">
+            <End Role="BaseCard" EntitySet="BaseCards" />
+            <End Role="SessionLog" EntitySet="SessionLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SomeTestTable_BaseCard" Association="LionDbModel.FK_SomeTestTable_BaseCard">
+            <End Role="BaseCard" EntitySet="BaseCards" />
+            <End Role="IGameUserMachineSiteAssignment" EntitySet="IGameUserMachineSiteAssignments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_BaseCard" Association="LionDbModel.FK_Staff_BaseCard">
+            <End Role="BaseCard" EntitySet="BaseCards" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Country_Currency" Association="LionDbModel.FK_Country_Currency">
+            <End Role="Currency" EntitySet="Currencies" />
+            <End Role="Country" EntitySet="Countries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Organization_Country" Association="LionDbModel.FK_Organization_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Organization" EntitySet="Organizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Country" Association="LionDbModel.FK_Player_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Country" Association="LionDbModel.FK_Staff_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Machine_Currency" Association="LionDbModel.FK_Machine_Currency">
+            <End Role="Currency" EntitySet="Currencies" />
+            <End Role="Machine" EntitySet="Machines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Organization_Currency" Association="LionDbModel.FK_Organization_Currency">
+            <End Role="Currency" EntitySet="Currencies" />
+            <End Role="Organization" EntitySet="Organizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Currency" Association="LionDbModel.FK_Player_Currency">
+            <End Role="Currency" EntitySet="Currencies" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Partner" Association="LionDbModel.FK_Game_Partner">
+            <End Role="Partner" EntitySet="Partners" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Machine_Game" Association="LionDbModel.FK_Machine_Game">
+            <End Role="Game" EntitySet="Games" />
+            <End Role="Machine" EntitySet="Machines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SessionLog_Game" Association="LionDbModel.FK_SessionLog_Game">
+            <End Role="Game" EntitySet="Games" />
+            <End Role="SessionLog" EntitySet="SessionLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IGameUserMachineSiteAssignment_Machine" Association="LionDbModel.FK_IGameUserMachineSiteAssignment_Machine">
+            <End Role="Machine" EntitySet="Machines" />
+            <End Role="IGameUserMachineSiteAssignment" EntitySet="IGameUserMachineSiteAssignments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Language" Association="LionDbModel.FK_Player_Language">
+            <End Role="Language" EntitySet="Languages" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Language" Association="LionDbModel.FK_Staff_Language">
+            <End Role="Language" EntitySet="Languages" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Machine_MachineType" Association="LionDbModel.FK_Machine_MachineType">
+            <End Role="MachineType" EntitySet="MachineTypes" />
+            <End Role="Machine" EntitySet="Machines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Machine_Organization" Association="LionDbModel.FK_Machine_Organization">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="Machine" EntitySet="Machines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Machine_Partner" Association="LionDbModel.FK_Machine_Partner">
+            <End Role="Partner" EntitySet="Partners" />
+            <End Role="Machine" EntitySet="Machines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MachineSession_Machine" Association="LionDbModel.FK_MachineSession_Machine">
+            <End Role="Machine" EntitySet="Machines" />
+            <End Role="MachineSession" EntitySet="MachineSessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MachineSession_SessionEndType" Association="LionDbModel.FK_MachineSession_SessionEndType">
+            <End Role="MachineSessionEndType" EntitySet="MachineSessionEndTypes" />
+            <End Role="MachineSession" EntitySet="MachineSessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MachineSessionLog_MachineSession" Association="LionDbModel.FK_MachineSessionLog_MachineSession">
+            <End Role="MachineSession" EntitySet="MachineSessions" />
+            <End Role="MachineSessionLog" EntitySet="MachineSessionLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Session_MachineSession" Association="LionDbModel.FK_Session_MachineSession">
+            <End Role="MachineSession" EntitySet="MachineSessions" />
+            <End Role="Session" EntitySet="Sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MachineSessionLog_MachineSessionLogAction" Association="LionDbModel.FK_MachineSessionLog_MachineSessionLogAction">
+            <End Role="MachineSessionLogAction" EntitySet="MachineSessionLogActions" />
+            <End Role="MachineSessionLog" EntitySet="MachineSessionLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Organization_OrganizationState" Association="LionDbModel.FK_Organization_OrganizationState">
+            <End Role="OrganizationState" EntitySet="OrganizationStates" />
+            <End Role="Organization" EntitySet="Organizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Organization_OrganizationType" Association="LionDbModel.FK_Organization_OrganizationType">
+            <End Role="OrganizationType" EntitySet="OrganizationTypes" />
+            <End Role="Organization" EntitySet="Organizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Organization" Association="LionDbModel.FK_Player_Organization">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SessionLog_Organization" Association="LionDbModel.FK_SessionLog_Organization">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="SessionLog" EntitySet="SessionLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebSession_Organization" Association="LionDbModel.FK_WebSession_Organization">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="WebSession" EntitySet="WebSessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_IGameAccounting" Association="LionDbModel.FK_Player_IGameAccounting">
+            <End Role="SessionLog" EntitySet="SessionLogs" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_PlayerRole" Association="LionDbModel.FK_Player_PlayerRole">
+            <End Role="PlayerRole" EntitySet="PlayerRoles" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Session" Association="LionDbModel.FK_Player_Session">
+            <End Role="Session" EntitySet="Sessions" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Session_SessionType" Association="LionDbModel.FK_Session_SessionType">
+            <End Role="SessionType" EntitySet="SessionTypes" />
+            <End Role="Session" EntitySet="Sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SessionLog_Session" Association="LionDbModel.FK_SessionLog_Session">
+            <End Role="Session" EntitySet="Sessions" />
+            <End Role="SessionLog" EntitySet="SessionLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebSession_Session" Association="LionDbModel.FK_WebSession_Session">
+            <End Role="Session" EntitySet="Sessions" />
+            <End Role="WebSession" EntitySet="WebSessions" />
+          </AssociationSet>
+          </EntityContainer>
+        <ComplexType Name="spAccountancyDetailResult">
+          <Property Type="Int32" Name="Amount" Nullable="false" />
+          <Property Type="Int32" Name="AccountingTypeID" Nullable="false" />
+          <Property Type="DateTime" Name="AccountingTimeStamp" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="spFetchChildOrganizations_Result">
+          <Property Type="Int32" Name="OrganizationID" Nullable="true" />
+          <Property Type="Int32" Name="ParentID" Nullable="true" />
+          <Property Type="String" Name="Level" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="Accounting">
+          <Key>
+            <PropertyRef Name="SessionLogID" />
+          </Key>
+          <Property Name="SessionLogID" Type="Int64" Nullable="false" />
+          <Property Name="AccountingTypeID" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Int32" Nullable="false" />
+          <Property Name="AccountingTimeStamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CurrencyID" Type="Int32" Nullable="false" />
+          <Property Name="ForCardBalance" Type="Int32" Nullable="false" />
+          <Property Name="Trid" Type="Guid" />
+          <NavigationProperty Name="AccountingType" Relationship="LionDbModel.FK_Accounting_AccountingType" FromRole="Accounting" ToRole="AccountingType" />
+          <NavigationProperty Name="Currency" Relationship="LionDbModel.FK_Accounting_Currency" FromRole="Accounting" ToRole="Currency" />
+          <NavigationProperty Name="SessionLog" Relationship="LionDbModel.FK_Accounting_SessionLog" FromRole="Accounting" ToRole="SessionLog" />
+        </EntityType>
+        <EntityType Name="AccountingClearanceType">
+          <Key>
+            <PropertyRef Name="ClearanceTypeID" />
+          </Key>
+          <Property Name="ClearanceTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClearanceTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AccountingType">
+          <Key>
+            <PropertyRef Name="AccountingTypeID" />
+          </Key>
+          <Property Name="AccountingTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountingTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AccountingTypeDescription" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Accountings" Relationship="LionDbModel.FK_Accounting_AccountingType" FromRole="AccountingType" ToRole="Accounting" />
+        </EntityType>
+        <EntityType Name="Action">
+          <Key>
+            <PropertyRef Name="ActionID" />
+          </Key>
+          <Property Name="ActionID" Type="Int32" Nullable="false" />
+          <Property Name="ActionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ActionDescription" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SessionLogs" Relationship="LionDbModel.FK_SessionLog_Action" FromRole="Action" ToRole="SessionLog" />
+        </EntityType>
+        <EntityType Name="BaseCard">
+          <Key>
+            <PropertyRef Name="BaseCardID" />
+          </Key>
+          <Property Name="BaseCardID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CardBarCode" Type="Int64" Nullable="false" />
+          <Property Name="CardPin" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="false" />
+          <Property Name="CardTypeID" Type="Int32" Nullable="false" />
+          <Property Name="MachineID" Type="Int32" />
+          <Property Name="TimeStampLocked" Type="DateTime" Precision="3" />
+          <Property Name="RoleRightsChangedTimestamp" Type="DateTime" Precision="3" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="WebSessionToken" Type="Guid" />
+          <NavigationProperty Name="BaseCardType" Relationship="LionDbModel.FK_BaseCard_BaseCardType" FromRole="BaseCard" ToRole="BaseCardType" />
+          <NavigationProperty Name="Player" Relationship="LionDbModel.FK_Player_BaseCard" FromRole="BaseCard" ToRole="Player" />
+          <NavigationProperty Name="Sessions" Relationship="LionDbModel.FK_Session_BaseCard" FromRole="BaseCard" ToRole="Session" />
+          <NavigationProperty Name="SessionLogs" Relationship="LionDbModel.FK_SessionLog_BaseCard" FromRole="BaseCard" ToRole="SessionLog" />
+          <NavigationProperty Name="IGameUserMachineSiteAssignment" Relationship="LionDbModel.FK_SomeTestTable_BaseCard" FromRole="BaseCard" ToRole="IGameUserMachineSiteAssignment" />
+          <NavigationProperty Name="Staff" Relationship="LionDbModel.FK_Staff_BaseCard" FromRole="BaseCard" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="BaseCardType">
+          <Key>
+            <PropertyRef Name="CardTypeID" />
+          </Key>
+          <Property Name="CardTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CardTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BaseCards" Relationship="LionDbModel.FK_BaseCard_BaseCardType" FromRole="BaseCardType" ToRole="BaseCard" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="Int32" Nullable="false" />
+          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CountryShortName" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="CurrencyID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Currency" Relationship="LionDbModel.FK_Country_Currency" FromRole="Country" ToRole="Currency" />
+          <NavigationProperty Name="Organizations" Relationship="LionDbModel.FK_Organization_Country" FromRole="Country" ToRole="Organization" />
+          <NavigationProperty Name="Players" Relationship="LionDbModel.FK_Player_Country" FromRole="Country" ToRole="Player" />
+          <NavigationProperty Name="Staffs" Relationship="LionDbModel.FK_Staff_Country" FromRole="Country" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="CurrencyID" />
+          </Key>
+          <Property Name="CurrencyID" Type="Int32" Nullable="false" />
+          <Property Name="CurrencyName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CurrencyShortName" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Accountings" Relationship="LionDbModel.FK_Accounting_Currency" FromRole="Currency" ToRole="Accounting" />
+          <NavigationProperty Name="Countries" Relationship="LionDbModel.FK_Country_Currency" FromRole="Currency" ToRole="Country" />
+          <NavigationProperty Name="Machines" Relationship="LionDbModel.FK_Machine_Currency" FromRole="Currency" ToRole="Machine" />
+          <NavigationProperty Name="Organizations" Relationship="LionDbModel.FK_Organization_Currency" FromRole="Currency" ToRole="Organization" />
+          <NavigationProperty Name="Players" Relationship="LionDbModel.FK_Player_Currency" FromRole="Currency" ToRole="Player" />
+        </EntityType>
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="GameID" />
+          </Key>
+          <Property Name="GameID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PartnerID" Type="Int32" Nullable="false" />
+          <Property Name="GameName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GameDescription" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Partner" Relationship="LionDbModel.FK_Game_Partner" FromRole="Game" ToRole="Partner" />
+          <NavigationProperty Name="Machines" Relationship="LionDbModel.FK_Machine_Game" FromRole="Game" ToRole="Machine" />
+          <NavigationProperty Name="SessionLogs" Relationship="LionDbModel.FK_SessionLog_Game" FromRole="Game" ToRole="SessionLog" />
+        </EntityType>
+        <EntityType Name="IGameUserMachineSiteAssignment">
+          <Key>
+            <PropertyRef Name="BaseCardID" />
+          </Key>
+          <Property Name="BaseCardID" Type="Int32" Nullable="false" />
+          <Property Name="MachineID" Type="Int32" Nullable="false" />
+          <Property Name="SiteId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BaseCard" Relationship="LionDbModel.FK_SomeTestTable_BaseCard" FromRole="IGameUserMachineSiteAssignment" ToRole="BaseCard" />
+          <NavigationProperty Name="Machine" Relationship="LionDbModel.FK_IGameUserMachineSiteAssignment_Machine" FromRole="IGameUserMachineSiteAssignment" ToRole="Machine" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="LanguageID" />
+          </Key>
+          <Property Name="LanguageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegionCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LanguageName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Players" Relationship="LionDbModel.FK_Player_Language" FromRole="Language" ToRole="Player" />
+          <NavigationProperty Name="Staffs" Relationship="LionDbModel.FK_Staff_Language" FromRole="Language" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="Machine">
+          <Key>
+            <PropertyRef Name="MachineID" />
+          </Key>
+          <Property Name="MachineID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MachineTypeID" Type="Int32" Nullable="false" />
+          <Property Name="ParentOrganizationID" Type="Int32" Nullable="false" />
+          <Property Name="MachineName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MachinePassword" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SharedSecret" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MAC" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IP" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="LastPoll" Type="DateTime" Precision="3" />
+          <Property Name="TeamviewerId" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="CurrencyID" Type="Int32" Nullable="false" />
+          <Property Name="TimestampLocked" Type="DateTime" Precision="3" />
+          <Property Name="GameNR" Type="Int32" />
+          <Property Name="PartnerNR" Type="Int32" />
+          <NavigationProperty Name="Currency" Relationship="LionDbModel.FK_Machine_Currency" FromRole="Machine" ToRole="Currency" />
+          <NavigationProperty Name="Game" Relationship="LionDbModel.FK_Machine_Game" FromRole="Machine" ToRole="Game" />
+          <NavigationProperty Name="IGameUserMachineSiteAssignments" Relationship="LionDbModel.FK_IGameUserMachineSiteAssignment_Machine" FromRole="Machine" ToRole="IGameUserMachineSiteAssignment" />
+          <NavigationProperty Name="MachineType" Relationship="LionDbModel.FK_Machine_MachineType" FromRole="Machine" ToRole="MachineType" />
+          <NavigationProperty Name="Organization" Relationship="LionDbModel.FK_Machine_Organization" FromRole="Machine" ToRole="Organization" />
+          <NavigationProperty Name="Partner" Relationship="LionDbModel.FK_Machine_Partner" FromRole="Machine" ToRole="Partner" />
+          <NavigationProperty Name="MachineSessions" Relationship="LionDbModel.FK_MachineSession_Machine" FromRole="Machine" ToRole="MachineSession" />
+        </EntityType>
+        <EntityType Name="MachineSession">
+          <Key>
+            <PropertyRef Name="MachineSessionID" />
+          </Key>
+          <Property Name="MachineSessionID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MachineID" Type="Int32" Nullable="false" />
+          <Property Name="SessionStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SessionEnd" Type="DateTime" Precision="3" />
+          <Property Name="SessionEndTypeID" Type="Int32" />
+          <NavigationProperty Name="Machine" Relationship="LionDbModel.FK_MachineSession_Machine" FromRole="MachineSession" ToRole="Machine" />
+          <NavigationProperty Name="MachineSessionEndType" Relationship="LionDbModel.FK_MachineSession_SessionEndType" FromRole="MachineSession" ToRole="MachineSessionEndType" />
+          <NavigationProperty Name="MachineSessionLogs" Relationship="LionDbModel.FK_MachineSessionLog_MachineSession" FromRole="MachineSession" ToRole="MachineSessionLog" />
+          <NavigationProperty Name="Sessions" Relationship="LionDbModel.FK_Session_MachineSession" FromRole="MachineSession" ToRole="Session" />
+        </EntityType>
+        <EntityType Name="MachineSessionEndType">
+          <Key>
+            <PropertyRef Name="SessionEndTypeID" />
+          </Key>
+          <Property Name="SessionEndTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SessionEndName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MachineSessions" Relationship="LionDbModel.FK_MachineSession_SessionEndType" FromRole="MachineSessionEndType" ToRole="MachineSession" />
+        </EntityType>
+        <EntityType Name="MachineSessionLog">
+          <Key>
+            <PropertyRef Name="MachineSessionLogID" />
+          </Key>
+          <Property Name="MachineSessionLogID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MachineSessionID" Type="Int64" Nullable="false" />
+          <Property Name="MachineSessionLogActionID" Type="Int32" Nullable="false" />
+          <Property Name="LogTimeStamp" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="MachineSession" Relationship="LionDbModel.FK_MachineSessionLog_MachineSession" FromRole="MachineSessionLog" ToRole="MachineSession" />
+          <NavigationProperty Name="MachineSessionLogAction" Relationship="LionDbModel.FK_MachineSessionLog_MachineSessionLogAction" FromRole="MachineSessionLog" ToRole="MachineSessionLogAction" />
+        </EntityType>
+        <EntityType Name="MachineSessionLogAction">
+          <Key>
+            <PropertyRef Name="MachineSessionLogActionID" />
+          </Key>
+          <Property Name="MachineSessionLogActionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MachineSessionLogName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MachineSessionLogs" Relationship="LionDbModel.FK_MachineSessionLog_MachineSessionLogAction" FromRole="MachineSessionLogAction" ToRole="MachineSessionLog" />
+        </EntityType>
+        <EntityType Name="MachineType">
+          <Key>
+            <PropertyRef Name="MachineTypeID" />
+          </Key>
+          <Property Name="MachineTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MachineTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Machines" Relationship="LionDbModel.FK_Machine_MachineType" FromRole="MachineType" ToRole="Machine" />
+        </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="OrganizationID" />
+          </Key>
+          <Property Name="OrganizationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrganizationName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OrganizationTypeID" Type="Int32" Nullable="false" />
+          <Property Name="ParentId" Type="Int32" Nullable="false" />
+          <Property Name="CountryID" Type="Int32" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Street" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ZIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LockedTimeStamp" Type="DateTime" Precision="3" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="CurrencyID" Type="Int32" Nullable="false" />
+          <Property Name="SiteId" Type="Int32" />
+          <Property Name="B2DWebShopId" Type="Int32" />
+          <Property Name="OrganizationStateID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Country" Relationship="LionDbModel.FK_Organization_Country" FromRole="Organization" ToRole="Country" />
+          <NavigationProperty Name="Currency" Relationship="LionDbModel.FK_Organization_Currency" FromRole="Organization" ToRole="Currency" />
+          <NavigationProperty Name="Machines" Relationship="LionDbModel.FK_Machine_Organization" FromRole="Organization" ToRole="Machine" />
+          <NavigationProperty Name="OrganizationState" Relationship="LionDbModel.FK_Organization_OrganizationState" FromRole="Organization" ToRole="OrganizationState" />
+          <NavigationProperty Name="OrganizationType" Relationship="LionDbModel.FK_Organization_OrganizationType" FromRole="Organization" ToRole="OrganizationType" />
+          <NavigationProperty Name="Players" Relationship="LionDbModel.FK_Player_Organization" FromRole="Organization" ToRole="Player" />
+          <NavigationProperty Name="SessionLogs" Relationship="LionDbModel.FK_SessionLog_Organization" FromRole="Organization" ToRole="SessionLog" />
+          <NavigationProperty Name="WebSessions" Relationship="LionDbModel.FK_WebSession_Organization" FromRole="Organization" ToRole="WebSession" />
+        </EntityType>
+        <EntityType Name="OrganizationState">
+          <Key>
+            <PropertyRef Name="OrganizationStateID" />
+          </Key>
+          <Property Name="OrganizationStateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrganizationStateName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Organizations" Relationship="LionDbModel.FK_Organization_OrganizationState" FromRole="OrganizationState" ToRole="Organization" />
+        </EntityType>
+        <EntityType Name="OrganizationType">
+          <Key>
+            <PropertyRef Name="OrganizationTypeID" />
+          </Key>
+          <Property Name="OrganizationTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrganizationTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Organizations" Relationship="LionDbModel.FK_Organization_OrganizationType" FromRole="OrganizationType" ToRole="Organization" />
+        </EntityType>
+        <EntityType Name="Partner">
+          <Key>
+            <PropertyRef Name="PartnerID" />
+          </Key>
+          <Property Name="PartnerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PartnerName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PartnerDescription" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Games" Relationship="LionDbModel.FK_Game_Partner" FromRole="Partner" ToRole="Game" />
+          <NavigationProperty Name="Machines" Relationship="LionDbModel.FK_Machine_Partner" FromRole="Partner" ToRole="Machine" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="BaseCardID" />
+          </Key>
+          <Property Name="BaseCardID" Type="Int32" Nullable="false" />
+          <Property Name="OrganizationID" Type="Int32" Nullable="false" />
+          <Property Name="PlayerRoleID" Type="Int32" Nullable="false" />
+          <Property Name="CurrencyID" Type="Int32" Nullable="false" />
+          <Property Name="LanguageID" Type="Int32" Nullable="false" />
+          <Property Name="CountryID" Type="Int32" Nullable="false" />
+          <Property Name="Balance" Type="Int32" Nullable="false" />
+          <Property Name="FailedPinLogins" Type="Int32" Nullable="false" />
+          <Property Name="Alias" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="Street" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ZIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsMale" Type="Boolean" Nullable="false" />
+          <Property Name="IGameAccountingReservationSessionLogNR" Type="Int64" />
+          <Property Name="SessionNR" Type="Int64" />
+          <Property Name="FailedLogoutAttempts" Type="Int32" />
+          <NavigationProperty Name="BaseCard" Relationship="LionDbModel.FK_Player_BaseCard" FromRole="Player" ToRole="BaseCard" />
+          <NavigationProperty Name="Country" Relationship="LionDbModel.FK_Player_Country" FromRole="Player" ToRole="Country" />
+          <NavigationProperty Name="Currency" Relationship="LionDbModel.FK_Player_Currency" FromRole="Player" ToRole="Currency" />
+          <NavigationProperty Name="Language" Relationship="LionDbModel.FK_Player_Language" FromRole="Player" ToRole="Language" />
+          <NavigationProperty Name="Organization" Relationship="LionDbModel.FK_Player_Organization" FromRole="Player" ToRole="Organization" />
+          <NavigationProperty Name="SessionLog" Relationship="LionDbModel.FK_Player_IGameAccounting" FromRole="Player" ToRole="SessionLog" />
+          <NavigationProperty Name="PlayerRole" Relationship="LionDbModel.FK_Player_PlayerRole" FromRole="Player" ToRole="PlayerRole" />
+          <NavigationProperty Name="Session" Relationship="LionDbModel.FK_Player_Session" FromRole="Player" ToRole="Session" />
+        </EntityType>
+        <EntityType Name="PlayerRole">
+          <Key>
+            <PropertyRef Name="PlayerRoleID" />
+          </Key>
+          <Property Name="PlayerRoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlayerRoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Players" Relationship="LionDbModel.FK_Player_PlayerRole" FromRole="PlayerRole" ToRole="Player" />
+        </EntityType>
+        <EntityType Name="Right">
+          <Key>
+            <PropertyRef Name="RightID" />
+          </Key>
+          <Property Name="RightID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RightName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RightDescription" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Session">
+          <Key>
+            <PropertyRef Name="SessionID" />
+          </Key>
+          <Property Name="SessionID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SessionStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SessionEnd" Type="DateTime" Precision="3" />
+          <Property Name="BaseCardID" Type="Int32" Nullable="false" />
+          <Property Name="MachineSessionID" Type="Int64" />
+          <Property Name="SessionTypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BaseCard" Relationship="LionDbModel.FK_Session_BaseCard" FromRole="Session" ToRole="BaseCard" />
+          <NavigationProperty Name="MachineSession" Relationship="LionDbModel.FK_Session_MachineSession" FromRole="Session" ToRole="MachineSession" />
+          <NavigationProperty Name="Players" Relationship="LionDbModel.FK_Player_Session" FromRole="Session" ToRole="Player" />
+          <NavigationProperty Name="SessionType" Relationship="LionDbModel.FK_Session_SessionType" FromRole="Session" ToRole="SessionType" />
+          <NavigationProperty Name="SessionLogs" Relationship="LionDbModel.FK_SessionLog_Session" FromRole="Session" ToRole="SessionLog" />
+          <NavigationProperty Name="WebSession" Relationship="LionDbModel.FK_WebSession_Session" FromRole="Session" ToRole="WebSession" />
+        </EntityType>
+        <EntityType Name="SessionLog">
+          <Key>
+            <PropertyRef Name="SessionLogID" />
+          </Key>
+          <Property Name="SessionLogID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SessionID" Type="Int64" Nullable="false" />
+          <Property Name="ActionID" Type="Int32" Nullable="false" />
+          <Property Name="MachineID" Type="Int32" />
+          <Property Name="GameID" Type="Int32" />
+          <Property Name="LogTimeStamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OrganizationID" Type="Int32" />
+          <Property Name="ForBaseCardID" Type="Int32" />
+          <NavigationProperty Name="Accounting" Relationship="LionDbModel.FK_Accounting_SessionLog" FromRole="SessionLog" ToRole="Accounting" />
+          <NavigationProperty Name="Action" Relationship="LionDbModel.FK_SessionLog_Action" FromRole="SessionLog" ToRole="Action" />
+          <NavigationProperty Name="BaseCard" Relationship="LionDbModel.FK_SessionLog_BaseCard" FromRole="SessionLog" ToRole="BaseCard" />
+          <NavigationProperty Name="Game" Relationship="LionDbModel.FK_SessionLog_Game" FromRole="SessionLog" ToRole="Game" />
+          <NavigationProperty Name="Organization" Relationship="LionDbModel.FK_SessionLog_Organization" FromRole="SessionLog" ToRole="Organization" />
+          <NavigationProperty Name="Players" Relationship="LionDbModel.FK_Player_IGameAccounting" FromRole="SessionLog" ToRole="Player" />
+          <NavigationProperty Name="Session" Relationship="LionDbModel.FK_SessionLog_Session" FromRole="SessionLog" ToRole="Session" />
+        </EntityType>
+        <EntityType Name="SessionType">
+          <Key>
+            <PropertyRef Name="SessionTypeID" />
+          </Key>
+          <Property Name="SessionTypeID" Type="Int32" Nullable="false" />
+          <Property Name="SessionTypeName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Sessions" Relationship="LionDbModel.FK_Session_SessionType" FromRole="SessionType" ToRole="Session" />
+        </EntityType>
+        <EntityType Name="Setting">
+          <Key>
+            <PropertyRef Name="SettingID" />
+          </Key>
+          <Property Name="SettingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegionID" Type="Int32" Nullable="false" />
+          <Property Name="LastTimeOutCheck" Type="DateTime" Precision="3" />
+          <Property Name="OtcExpirationLimit" Type="Int32" />
+          <Property Name="OtcExpirationThreshold" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PayOutLimit" Type="Int32" />
+          <Property Name="PayInLimit" Type="Int32" />
+          <Property Name="LossLimit" Type="Int32" />
+          <Property Name="DesiredHold" Type="Int32" Nullable="false" />
+          <Property Name="DisplayedCoinSymbol" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="MaxOrganizationLoss" Type="Int32" />
+          <Property Name="AllowActionGames" Type="Boolean" Nullable="false" />
+          <Property Name="MaxGamble" Type="Int32" Nullable="false" />
+          <Property Name="AllowTurbo" Type="Boolean" Nullable="false" />
+          <Property Name="McmPayInLimit" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="BaseCardID" />
+          </Key>
+          <Property Name="BaseCardID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastPoll" Type="DateTime" Precision="3" />
+          <Property Name="Street" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ZIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LanguageID" Type="Int32" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CountryID" Type="Int32" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Fullname" Type="String" Nullable="false" MaxLength="102" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="BaseCard" Relationship="LionDbModel.FK_Staff_BaseCard" FromRole="Staff" ToRole="BaseCard" />
+          <NavigationProperty Name="Country" Relationship="LionDbModel.FK_Staff_Country" FromRole="Staff" ToRole="Country" />
+          <NavigationProperty Name="Language" Relationship="LionDbModel.FK_Staff_Language" FromRole="Staff" ToRole="Language" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="WebSession">
+          <Key>
+            <PropertyRef Name="SessionID" />
+          </Key>
+          <Property Name="SessionID" Type="Int64" Nullable="false" />
+          <Property Name="WebToken" Type="Guid" Nullable="false" />
+          <Property Name="OrganizationID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Organization" Relationship="LionDbModel.FK_WebSession_Organization" FromRole="WebSession" ToRole="Organization" />
+          <NavigationProperty Name="Session" Relationship="LionDbModel.FK_WebSession_Session" FromRole="WebSession" ToRole="Session" />
+        </EntityType>
+        <Association Name="FK_Accounting_AccountingType">
+          <End Type="LionDbModel.AccountingType" Role="AccountingType" Multiplicity="1" />
+          <End Type="LionDbModel.Accounting" Role="Accounting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountingType">
+              <PropertyRef Name="AccountingTypeID" />
+            </Principal>
+            <Dependent Role="Accounting">
+              <PropertyRef Name="AccountingTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accounting_Currency">
+          <End Type="LionDbModel.Currency" Role="Currency" Multiplicity="1" />
+          <End Type="LionDbModel.Accounting" Role="Accounting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="CurrencyID" />
+            </Principal>
+            <Dependent Role="Accounting">
+              <PropertyRef Name="CurrencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accounting_SessionLog">
+          <End Type="LionDbModel.SessionLog" Role="SessionLog" Multiplicity="1" />
+          <End Type="LionDbModel.Accounting" Role="Accounting" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="SessionLog">
+              <PropertyRef Name="SessionLogID" />
+            </Principal>
+            <Dependent Role="Accounting">
+              <PropertyRef Name="SessionLogID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SessionLog_Action">
+          <End Type="LionDbModel.Action" Role="Action" Multiplicity="1" />
+          <End Type="LionDbModel.SessionLog" Role="SessionLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Action">
+              <PropertyRef Name="ActionID" />
+            </Principal>
+            <Dependent Role="SessionLog">
+              <PropertyRef Name="ActionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BaseCard_BaseCardType">
+          <End Type="LionDbModel.BaseCardType" Role="BaseCardType" Multiplicity="1" />
+          <End Type="LionDbModel.BaseCard" Role="BaseCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BaseCardType">
+              <PropertyRef Name="CardTypeID" />
+            </Principal>
+            <Dependent Role="BaseCard">
+              <PropertyRef Name="CardTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_BaseCard">
+          <End Type="LionDbModel.BaseCard" Role="BaseCard" Multiplicity="1" />
+          <End Type="LionDbModel.Player" Role="Player" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="BaseCard">
+              <PropertyRef Name="BaseCardID" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="BaseCardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Session_BaseCard">
+          <End Type="LionDbModel.BaseCard" Role="BaseCard" Multiplicity="1" />
+          <End Type="LionDbModel.Session" Role="Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BaseCard">
+              <PropertyRef Name="BaseCardID" />
+            </Principal>
+            <Dependent Role="Session">
+              <PropertyRef Name="BaseCardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SessionLog_BaseCard">
+          <End Type="LionDbModel.BaseCard" Role="BaseCard" Multiplicity="0..1" />
+          <End Type="LionDbModel.SessionLog" Role="SessionLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BaseCard">
+              <PropertyRef Name="BaseCardID" />
+            </Principal>
+            <Dependent Role="SessionLog">
+              <PropertyRef Name="ForBaseCardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SomeTestTable_BaseCard">
+          <End Type="LionDbModel.BaseCard" Role="BaseCard" Multiplicity="1" />
+          <End Type="LionDbModel.IGameUserMachineSiteAssignment" Role="IGameUserMachineSiteAssignment" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="BaseCard">
+              <PropertyRef Name="BaseCardID" />
+            </Principal>
+            <Dependent Role="IGameUserMachineSiteAssignment">
+              <PropertyRef Name="BaseCardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_BaseCard">
+          <End Type="LionDbModel.BaseCard" Role="BaseCard" Multiplicity="1" />
+          <End Type="LionDbModel.Staff" Role="Staff" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="BaseCard">
+              <PropertyRef Name="BaseCardID" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="BaseCardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Country_Currency">
+          <End Type="LionDbModel.Currency" Role="Currency" Multiplicity="1" />
+          <End Type="LionDbModel.Country" Role="Country" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="CurrencyID" />
+            </Principal>
+            <Dependent Role="Country">
+              <PropertyRef Name="CurrencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Organization_Country">
+          <End Type="LionDbModel.Country" Role="Country" Multiplicity="1" />
+          <End Type="LionDbModel.Organization" Role="Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_Country">
+          <End Type="LionDbModel.Country" Role="Country" Multiplicity="1" />
+          <End Type="LionDbModel.Player" Role="Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Country">
+          <End Type="LionDbModel.Country" Role="Country" Multiplicity="1" />
+          <End Type="LionDbModel.Staff" Role="Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Machine_Currency">
+          <End Type="LionDbModel.Currency" Role="Currency" Multiplicity="1" />
+          <End Type="LionDbModel.Machine" Role="Machine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="CurrencyID" />
+            </Principal>
+            <Dependent Role="Machine">
+              <PropertyRef Name="CurrencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Organization_Currency">
+          <End Type="LionDbModel.Currency" Role="Currency" Multiplicity="1" />
+          <End Type="LionDbModel.Organization" Role="Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="CurrencyID" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="CurrencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_Currency">
+          <End Type="LionDbModel.Currency" Role="Currency" Multiplicity="1" />
+          <End Type="LionDbModel.Player" Role="Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="CurrencyID" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="CurrencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_Partner">
+          <End Type="LionDbModel.Partner" Role="Partner" Multiplicity="1" />
+          <End Type="LionDbModel.Game" Role="Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partner">
+              <PropertyRef Name="PartnerID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="PartnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Machine_Game">
+          <End Type="LionDbModel.Game" Role="Game" Multiplicity="0..1" />
+          <End Type="LionDbModel.Machine" Role="Machine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="GameID" />
+            </Principal>
+            <Dependent Role="Machine">
+              <PropertyRef Name="GameNR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SessionLog_Game">
+          <End Type="LionDbModel.Game" Role="Game" Multiplicity="0..1" />
+          <End Type="LionDbModel.SessionLog" Role="SessionLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="GameID" />
+            </Principal>
+            <Dependent Role="SessionLog">
+              <PropertyRef Name="GameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IGameUserMachineSiteAssignment_Machine">
+          <End Type="LionDbModel.Machine" Role="Machine" Multiplicity="1" />
+          <End Type="LionDbModel.IGameUserMachineSiteAssignment" Role="IGameUserMachineSiteAssignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="MachineID" />
+            </Principal>
+            <Dependent Role="IGameUserMachineSiteAssignment">
+              <PropertyRef Name="MachineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_Language">
+          <End Type="LionDbModel.Language" Role="Language" Multiplicity="1" />
+          <End Type="LionDbModel.Player" Role="Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="LanguageID" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="LanguageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Language">
+          <End Type="LionDbModel.Language" Role="Language" Multiplicity="1" />
+          <End Type="LionDbModel.Staff" Role="Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="LanguageID" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="LanguageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Machine_MachineType">
+          <End Type="LionDbModel.MachineType" Role="MachineType" Multiplicity="1" />
+          <End Type="LionDbModel.Machine" Role="Machine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MachineType">
+              <PropertyRef Name="MachineTypeID" />
+            </Principal>
+            <Dependent Role="Machine">
+              <PropertyRef Name="MachineTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Machine_Organization">
+          <End Type="LionDbModel.Organization" Role="Organization" Multiplicity="1" />
+          <End Type="LionDbModel.Machine" Role="Machine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="OrganizationID" />
+            </Principal>
+            <Dependent Role="Machine">
+              <PropertyRef Name="ParentOrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Machine_Partner">
+          <End Type="LionDbModel.Partner" Role="Partner" Multiplicity="0..1" />
+          <End Type="LionDbModel.Machine" Role="Machine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partner">
+              <PropertyRef Name="PartnerID" />
+            </Principal>
+            <Dependent Role="Machine">
+              <PropertyRef Name="PartnerNR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MachineSession_Machine">
+          <End Type="LionDbModel.Machine" Role="Machine" Multiplicity="1" />
+          <End Type="LionDbModel.MachineSession" Role="MachineSession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="MachineID" />
+            </Principal>
+            <Dependent Role="MachineSession">
+              <PropertyRef Name="MachineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MachineSession_SessionEndType">
+          <End Type="LionDbModel.MachineSessionEndType" Role="MachineSessionEndType" Multiplicity="0..1" />
+          <End Type="LionDbModel.MachineSession" Role="MachineSession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MachineSessionEndType">
+              <PropertyRef Name="SessionEndTypeID" />
+            </Principal>
+            <Dependent Role="MachineSession">
+              <PropertyRef Name="SessionEndTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MachineSessionLog_MachineSession">
+          <End Type="LionDbModel.MachineSession" Role="MachineSession" Multiplicity="1" />
+          <End Type="LionDbModel.MachineSessionLog" Role="MachineSessionLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MachineSession">
+              <PropertyRef Name="MachineSessionID" />
+            </Principal>
+            <Dependent Role="MachineSessionLog">
+              <PropertyRef Name="MachineSessionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Session_MachineSession">
+          <End Type="LionDbModel.MachineSession" Role="MachineSession" Multiplicity="0..1" />
+          <End Type="LionDbModel.Session" Role="Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MachineSession">
+              <PropertyRef Name="MachineSessionID" />
+            </Principal>
+            <Dependent Role="Session">
+              <PropertyRef Name="MachineSessionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MachineSessionLog_MachineSessionLogAction">
+          <End Type="LionDbModel.MachineSessionLogAction" Role="MachineSessionLogAction" Multiplicity="1" />
+          <End Type="LionDbModel.MachineSessionLog" Role="MachineSessionLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MachineSessionLogAction">
+              <PropertyRef Name="MachineSessionLogActionID" />
+            </Principal>
+            <Dependent Role="MachineSessionLog">
+              <PropertyRef Name="MachineSessionLogActionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Organization_OrganizationState">
+          <End Type="LionDbModel.OrganizationState" Role="OrganizationState" Multiplicity="1" />
+          <End Type="LionDbModel.Organization" Role="Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrganizationState">
+              <PropertyRef Name="OrganizationStateID" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="OrganizationStateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Organization_OrganizationType">
+          <End Type="LionDbModel.OrganizationType" Role="OrganizationType" Multiplicity="1" />
+          <End Type="LionDbModel.Organization" Role="Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrganizationType">
+              <PropertyRef Name="OrganizationTypeID" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="OrganizationTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_Organization">
+          <End Type="LionDbModel.Organization" Role="Organization" Multiplicity="1" />
+          <End Type="LionDbModel.Player" Role="Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="OrganizationID" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SessionLog_Organization">
+          <End Type="LionDbModel.Organization" Role="Organization" Multiplicity="0..1" />
+          <End Type="LionDbModel.SessionLog" Role="SessionLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="OrganizationID" />
+            </Principal>
+            <Dependent Role="SessionLog">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebSession_Organization">
+          <End Type="LionDbModel.Organization" Role="Organization" Multiplicity="1" />
+          <End Type="LionDbModel.WebSession" Role="WebSession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="OrganizationID" />
+            </Principal>
+            <Dependent Role="WebSession">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_IGameAccounting">
+          <End Type="LionDbModel.SessionLog" Role="SessionLog" Multiplicity="0..1" />
+          <End Type="LionDbModel.Player" Role="Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SessionLog">
+              <PropertyRef Name="SessionLogID" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="IGameAccountingReservationSessionLogNR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_PlayerRole">
+          <End Type="LionDbModel.PlayerRole" Role="PlayerRole" Multiplicity="1" />
+          <End Type="LionDbModel.Player" Role="Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlayerRole">
+              <PropertyRef Name="PlayerRoleID" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="PlayerRoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_Session">
+          <End Type="LionDbModel.Session" Role="Session" Multiplicity="0..1" />
+          <End Type="LionDbModel.Player" Role="Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Session">
+              <PropertyRef Name="SessionID" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="SessionNR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Session_SessionType">
+          <End Type="LionDbModel.SessionType" Role="SessionType" Multiplicity="1" />
+          <End Type="LionDbModel.Session" Role="Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SessionType">
+              <PropertyRef Name="SessionTypeID" />
+            </Principal>
+            <Dependent Role="Session">
+              <PropertyRef Name="SessionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SessionLog_Session">
+          <End Type="LionDbModel.Session" Role="Session" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="LionDbModel.SessionLog" Role="SessionLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Session">
+              <PropertyRef Name="SessionID" />
+            </Principal>
+            <Dependent Role="SessionLog">
+              <PropertyRef Name="SessionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebSession_Session">
+          <End Type="LionDbModel.Session" Role="Session" Multiplicity="1" />
+          <End Type="LionDbModel.WebSession" Role="WebSession" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Session">
+              <PropertyRef Name="SessionID" />
+            </Principal>
+            <Dependent Role="WebSession">
+              <PropertyRef Name="SessionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LionDbModelStoreContainer" CdmEntityContainer="LionDbEntities">
+          <EntitySetMapping Name="Accountings">
+            <EntityTypeMapping TypeName="LionDbModel.Accounting">
+              <MappingFragment StoreEntitySet="Accounting">
+                <ScalarProperty Name="Trid" ColumnName="Trid" />
+                <ScalarProperty Name="ForCardBalance" ColumnName="ForCardBalance" />
+                <ScalarProperty Name="CurrencyID" ColumnName="CurrencyID" />
+                <ScalarProperty Name="AccountingTimeStamp" ColumnName="AccountingTimeStamp" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="AccountingTypeID" ColumnName="AccountingTypeID" />
+                <ScalarProperty Name="SessionLogID" ColumnName="SessionLogID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountingClearanceTypes">
+            <EntityTypeMapping TypeName="LionDbModel.AccountingClearanceType">
+              <MappingFragment StoreEntitySet="AccountingClearanceType">
+                <ScalarProperty Name="ClearanceTypeName" ColumnName="ClearanceTypeName" />
+                <ScalarProperty Name="ClearanceTypeID" ColumnName="ClearanceTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountingTypes">
+            <EntityTypeMapping TypeName="LionDbModel.AccountingType">
+              <MappingFragment StoreEntitySet="AccountingType">
+                <ScalarProperty Name="AccountingTypeDescription" ColumnName="AccountingTypeDescription" />
+                <ScalarProperty Name="AccountingTypeName" ColumnName="AccountingTypeName" />
+                <ScalarProperty Name="AccountingTypeID" ColumnName="AccountingTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Actions">
+            <EntityTypeMapping TypeName="LionDbModel.Action">
+              <MappingFragment StoreEntitySet="Action">
+                <ScalarProperty Name="ActionDescription" ColumnName="ActionDescription" />
+                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+                <ScalarProperty Name="ActionID" ColumnName="ActionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BaseCards">
+            <EntityTypeMapping TypeName="LionDbModel.BaseCard">
+              <MappingFragment StoreEntitySet="BaseCard">
+                <ScalarProperty Name="WebSessionToken" ColumnName="WebSessionToken" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="RoleRightsChangedTimestamp" ColumnName="RoleRightsChangedTimestamp" />
+                <ScalarProperty Name="TimeStampLocked" ColumnName="TimeStampLocked" />
+                <ScalarProperty Name="MachineID" ColumnName="MachineID" />
+                <ScalarProperty Name="CardTypeID" ColumnName="CardTypeID" />
+                <ScalarProperty Name="CardPin" ColumnName="CardPin" />
+                <ScalarProperty Name="CardBarCode" ColumnName="CardBarCode" />
+                <ScalarProperty Name="BaseCardID" ColumnName="BaseCardID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BaseCardTypes">
+            <EntityTypeMapping TypeName="LionDbModel.BaseCardType">
+              <MappingFragment StoreEntitySet="BaseCardType">
+                <ScalarProperty Name="CardTypeName" ColumnName="CardTypeName" />
+                <ScalarProperty Name="CardTypeID" ColumnName="CardTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="LionDbModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="CurrencyID" ColumnName="CurrencyID" />
+                <ScalarProperty Name="CountryShortName" ColumnName="CountryShortName" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Currencies">
+            <EntityTypeMapping TypeName="LionDbModel.Currency">
+              <MappingFragment StoreEntitySet="Currency">
+                <ScalarProperty Name="CurrencyShortName" ColumnName="CurrencyShortName" />
+                <ScalarProperty Name="CurrencyName" ColumnName="CurrencyName" />
+                <ScalarProperty Name="CurrencyID" ColumnName="CurrencyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Games">
+            <EntityTypeMapping TypeName="LionDbModel.Game">
+              <MappingFragment StoreEntitySet="Game">
+                <ScalarProperty Name="GameDescription" ColumnName="GameDescription" />
+                <ScalarProperty Name="GameName" ColumnName="GameName" />
+                <ScalarProperty Name="PartnerID" ColumnName="PartnerID" />
+                <ScalarProperty Name="GameID" ColumnName="GameID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IGameUserMachineSiteAssignments">
+            <EntityTypeMapping TypeName="LionDbModel.IGameUserMachineSiteAssignment">
+              <MappingFragment StoreEntitySet="IGameUserMachineSiteAssignment">
+                <ScalarProperty Name="SiteId" ColumnName="SiteId" />
+                <ScalarProperty Name="MachineID" ColumnName="MachineID" />
+                <ScalarProperty Name="BaseCardID" ColumnName="BaseCardID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Languages">
+            <EntityTypeMapping TypeName="LionDbModel.Language">
+              <MappingFragment StoreEntitySet="Language">
+                <ScalarProperty Name="LanguageName" ColumnName="LanguageName" />
+                <ScalarProperty Name="RegionCode" ColumnName="RegionCode" />
+                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Machines">
+            <EntityTypeMapping TypeName="LionDbModel.Machine">
+              <MappingFragment StoreEntitySet="Machine">
+                <ScalarProperty Name="PartnerNR" ColumnName="PartnerNR" />
+                <ScalarProperty Name="GameNR" ColumnName="GameNR" />
+                <ScalarProperty Name="TimestampLocked" ColumnName="TimestampLocked" />
+                <ScalarProperty Name="CurrencyID" ColumnName="CurrencyID" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="TeamviewerId" ColumnName="TeamviewerId" />
+                <ScalarProperty Name="LastPoll" ColumnName="LastPoll" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="MAC" ColumnName="MAC" />
+                <ScalarProperty Name="SharedSecret" ColumnName="SharedSecret" />
+                <ScalarProperty Name="MachinePassword" ColumnName="MachinePassword" />
+                <ScalarProperty Name="MachineName" ColumnName="MachineName" />
+                <ScalarProperty Name="ParentOrganizationID" ColumnName="ParentOrganizationID" />
+                <ScalarProperty Name="MachineTypeID" ColumnName="MachineTypeID" />
+                <ScalarProperty Name="MachineID" ColumnName="MachineID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MachineSessions">
+            <EntityTypeMapping TypeName="LionDbModel.MachineSession">
+              <MappingFragment StoreEntitySet="MachineSession">
+                <ScalarProperty Name="SessionEndTypeID" ColumnName="SessionEndTypeID" />
+                <ScalarProperty Name="SessionEnd" ColumnName="SessionEnd" />
+                <ScalarProperty Name="SessionStart" ColumnName="SessionStart" />
+                <ScalarProperty Name="MachineID" ColumnName="MachineID" />
+                <ScalarProperty Name="MachineSessionID" ColumnName="MachineSessionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MachineSessionEndTypes">
+            <EntityTypeMapping TypeName="LionDbModel.MachineSessionEndType">
+              <MappingFragment StoreEntitySet="MachineSessionEndType">
+                <ScalarProperty Name="SessionEndName" ColumnName="SessionEndName" />
+                <ScalarProperty Name="SessionEndTypeID" ColumnName="SessionEndTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MachineSessionLogs">
+            <EntityTypeMapping TypeName="LionDbModel.MachineSessionLog">
+              <MappingFragment StoreEntitySet="MachineSessionLog">
+                <ScalarProperty Name="LogTimeStamp" ColumnName="LogTimeStamp" />
+                <ScalarProperty Name="MachineSessionLogActionID" ColumnName="MachineSessionLogActionID" />
+                <ScalarProperty Name="MachineSessionID" ColumnName="MachineSessionID" />
+                <ScalarProperty Name="MachineSessionLogID" ColumnName="MachineSessionLogID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MachineSessionLogActions">
+            <EntityTypeMapping TypeName="LionDbModel.MachineSessionLogAction">
+              <MappingFragment StoreEntitySet="MachineSessionLogAction">
+                <ScalarProperty Name="MachineSessionLogName" ColumnName="MachineSessionLogName" />
+                <ScalarProperty Name="MachineSessionLogActionID" ColumnName="MachineSessionLogActionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MachineTypes">
+            <EntityTypeMapping TypeName="LionDbModel.MachineType">
+              <MappingFragment StoreEntitySet="MachineType">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="MachineTypeName" ColumnName="MachineTypeName" />
+                <ScalarProperty Name="MachineTypeID" ColumnName="MachineTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Organizations">
+            <EntityTypeMapping TypeName="LionDbModel.Organization">
+              <MappingFragment StoreEntitySet="Organization">
+                <ScalarProperty Name="OrganizationStateID" ColumnName="OrganizationStateID" />
+                <ScalarProperty Name="B2DWebShopId" ColumnName="B2DWebShopId" />
+                <ScalarProperty Name="SiteId" ColumnName="SiteId" />
+                <ScalarProperty Name="CurrencyID" ColumnName="CurrencyID" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="LockedTimeStamp" ColumnName="LockedTimeStamp" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="OrganizationTypeID" ColumnName="OrganizationTypeID" />
+                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrganizationStates">
+            <EntityTypeMapping TypeName="LionDbModel.OrganizationState">
+              <MappingFragment StoreEntitySet="OrganizationState">
+                <ScalarProperty Name="OrganizationStateName" ColumnName="OrganizationStateName" />
+                <ScalarProperty Name="OrganizationStateID" ColumnName="OrganizationStateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrganizationTypes">
+            <EntityTypeMapping TypeName="LionDbModel.OrganizationType">
+              <MappingFragment StoreEntitySet="OrganizationType">
+                <ScalarProperty Name="OrganizationTypeName" ColumnName="OrganizationTypeName" />
+                <ScalarProperty Name="OrganizationTypeID" ColumnName="OrganizationTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Partners">
+            <EntityTypeMapping TypeName="LionDbModel.Partner">
+              <MappingFragment StoreEntitySet="Partner">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="PartnerDescription" ColumnName="PartnerDescription" />
+                <ScalarProperty Name="PartnerName" ColumnName="PartnerName" />
+                <ScalarProperty Name="PartnerID" ColumnName="PartnerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Players">
+            <EntityTypeMapping TypeName="LionDbModel.Player">
+              <MappingFragment StoreEntitySet="Player">
+                <ScalarProperty Name="FailedLogoutAttempts" ColumnName="FailedLogoutAttempts" />
+                <ScalarProperty Name="SessionNR" ColumnName="SessionNR" />
+                <ScalarProperty Name="IGameAccountingReservationSessionLogNR" ColumnName="IGameAccountingReservationSessionLogNR" />
+                <ScalarProperty Name="IsMale" ColumnName="IsMale" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Alias" ColumnName="Alias" />
+                <ScalarProperty Name="FailedPinLogins" ColumnName="FailedPinLogins" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+                <ScalarProperty Name="CurrencyID" ColumnName="CurrencyID" />
+                <ScalarProperty Name="PlayerRoleID" ColumnName="PlayerRoleID" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="BaseCardID" ColumnName="BaseCardID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlayerRoles">
+            <EntityTypeMapping TypeName="LionDbModel.PlayerRole">
+              <MappingFragment StoreEntitySet="PlayerRole">
+                <ScalarProperty Name="PlayerRoleName" ColumnName="PlayerRoleName" />
+                <ScalarProperty Name="PlayerRoleID" ColumnName="PlayerRoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rights">
+            <EntityTypeMapping TypeName="LionDbModel.Right">
+              <MappingFragment StoreEntitySet="Right">
+                <ScalarProperty Name="RightDescription" ColumnName="RightDescription" />
+                <ScalarProperty Name="RightName" ColumnName="RightName" />
+                <ScalarProperty Name="RightID" ColumnName="RightID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="LionDbModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sessions">
+            <EntityTypeMapping TypeName="LionDbModel.Session">
+              <MappingFragment StoreEntitySet="Session">
+                <ScalarProperty Name="SessionTypeID" ColumnName="SessionTypeID" />
+                <ScalarProperty Name="MachineSessionID" ColumnName="MachineSessionID" />
+                <ScalarProperty Name="BaseCardID" ColumnName="BaseCardID" />
+                <ScalarProperty Name="SessionEnd" ColumnName="SessionEnd" />
+                <ScalarProperty Name="SessionStart" ColumnName="SessionStart" />
+                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SessionLogs">
+            <EntityTypeMapping TypeName="LionDbModel.SessionLog">
+              <MappingFragment StoreEntitySet="SessionLog">
+                <ScalarProperty Name="ForBaseCardID" ColumnName="ForBaseCardID" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="LogTimeStamp" ColumnName="LogTimeStamp" />
+                <ScalarProperty Name="GameID" ColumnName="GameID" />
+                <ScalarProperty Name="MachineID" ColumnName="MachineID" />
+                <ScalarProperty Name="ActionID" ColumnName="ActionID" />
+                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+                <ScalarProperty Name="SessionLogID" ColumnName="SessionLogID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SessionTypes">
+            <EntityTypeMapping TypeName="LionDbModel.SessionType">
+              <MappingFragment StoreEntitySet="SessionType">
+                <ScalarProperty Name="SessionTypeName" ColumnName="SessionTypeName" />
+                <ScalarProperty Name="SessionTypeID" ColumnName="SessionTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Settings">
+            <EntityTypeMapping TypeName="LionDbModel.Setting">
+              <MappingFragment StoreEntitySet="Settings">
+                <ScalarProperty Name="McmPayInLimit" ColumnName="McmPayInLimit" />
+                <ScalarProperty Name="AllowTurbo" ColumnName="AllowTurbo" />
+                <ScalarProperty Name="MaxGamble" ColumnName="MaxGamble" />
+                <ScalarProperty Name="AllowActionGames" ColumnName="AllowActionGames" />
+                <ScalarProperty Name="MaxOrganizationLoss" ColumnName="MaxOrganizationLoss" />
+                <ScalarProperty Name="DisplayedCoinSymbol" ColumnName="DisplayedCoinSymbol" />
+                <ScalarProperty Name="DesiredHold" ColumnName="DesiredHold" />
+                <ScalarProperty Name="LossLimit" ColumnName="LossLimit" />
+                <ScalarProperty Name="PayInLimit" ColumnName="PayInLimit" />
+                <ScalarProperty Name="PayOutLimit" ColumnName="PayOutLimit" />
+                <ScalarProperty Name="OtcExpirationThreshold" ColumnName="OtcExpirationThreshold" />
+                <ScalarProperty Name="OtcExpirationLimit" ColumnName="OtcExpirationLimit" />
+                <ScalarProperty Name="LastTimeOutCheck" ColumnName="LastTimeOutCheck" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="SettingID" ColumnName="SettingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staffs">
+            <EntityTypeMapping TypeName="LionDbModel.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="LastPoll" ColumnName="LastPoll" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="BaseCardID" ColumnName="BaseCardID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="LionDbModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebSessions">
+            <EntityTypeMapping TypeName="LionDbModel.WebSession">
+              <MappingFragment StoreEntitySet="WebSession">
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="WebToken" ColumnName="WebToken" />
+                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

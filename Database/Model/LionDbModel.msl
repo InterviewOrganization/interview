@@ -1,0 +1,460 @@
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LionDbModelStoreContainer" CdmEntityContainer="LionDbEntities">
+    <EntitySetMapping Name="Accountings">
+      <EntityTypeMapping TypeName="LionDbModel.Accounting">
+        <MappingFragment StoreEntitySet="Accounting">
+          <ScalarProperty Name="BaseCardID" ColumnName="BaseCardID" />
+          <ScalarProperty Name="AccountingTypeID" ColumnName="AccountingTypeID"  />
+          <ScalarProperty Name="SessionLogID" ColumnName="SessionLogID" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="AccountingTimeStamp" ColumnName="AccountingTimeStamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccountingClearances">
+      <EntityTypeMapping TypeName="LionDbModel.AccountingClearance">
+        <MappingFragment StoreEntitySet="AccountingClearance">
+          <ScalarProperty Name="SessionLogID" ColumnName="SessionLogID" />
+          <ScalarProperty Name="ClearanceTypeID" ColumnName="ClearanceTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccountingClearanceTypes">
+      <EntityTypeMapping TypeName="LionDbModel.AccountingClearanceType">
+        <MappingFragment StoreEntitySet="AccountingClearanceType">
+          <ScalarProperty Name="CearanceTypeID" ColumnName="CearanceTypeID" />
+          <ScalarProperty Name="ClearanceTypeName" ColumnName="ClearanceTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccountingTypes">
+      <EntityTypeMapping TypeName="LionDbModel.AccountingType">
+        <MappingFragment StoreEntitySet="AccountingType">
+          <ScalarProperty Name="AccountingTypeID" ColumnName="AccountingTypeID" />
+          <ScalarProperty Name="AccountingTypeName" ColumnName="AccountingTypeName" />
+          <ScalarProperty Name="AccountingTypeDescription" ColumnName="AccountingTypeDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Actions">
+      <EntityTypeMapping TypeName="LionDbModel.Action">
+        <MappingFragment StoreEntitySet="Action">
+          <ScalarProperty Name="ActionID" ColumnName="ActionID" />
+          <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+          <ScalarProperty Name="ActionDescription" ColumnName="ActionDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BaseCards">
+      <EntityTypeMapping TypeName="LionDbModel.BaseCard">
+        <MappingFragment StoreEntitySet="BaseCard">
+          <ScalarProperty Name="BaseCardID" ColumnName="BaseCardID" />
+          <ScalarProperty Name="CardBarCode" ColumnName="CardBarCode" />
+          <ScalarProperty Name="CardPin" ColumnName="CardPin" />
+          <ScalarProperty Name="CardTypeID" ColumnName="CardTypeID" />
+          <ScalarProperty Name="MachineID" ColumnName="MachineID" />
+          <ScalarProperty Name="TimeStampLocked" ColumnName="TimeStampLocked" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BaseCardTypes">
+      <EntityTypeMapping TypeName="LionDbModel.BaseCardType">
+        <MappingFragment StoreEntitySet="BaseCardType">
+          <ScalarProperty Name="CardTypeID" ColumnName="CardTypeID" />
+          <ScalarProperty Name="CardTypeName" ColumnName="CardTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="LionDbModel.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="sShortNameEnglish" ColumnName="sShortNameEnglish" />
+          <ScalarProperty Name="CurrencyID" ColumnName="CurrencyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Currencies">
+      <EntityTypeMapping TypeName="LionDbModel.Currency">
+        <MappingFragment StoreEntitySet="Currency">
+          <ScalarProperty Name="CurrencyID" ColumnName="CurrencyID" />
+          <ScalarProperty Name="sCurrencyName" ColumnName="sCurrencyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Games">
+      <EntityTypeMapping TypeName="LionDbModel.Game">
+        <MappingFragment StoreEntitySet="Game">
+          <ScalarProperty Name="GameID" ColumnName="GameID" />
+          <ScalarProperty Name="PartnerID" ColumnName="PartnerID" />
+          <ScalarProperty Name="GameName" ColumnName="GameName" />
+          <ScalarProperty Name="GameDescription" ColumnName="GameDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IGameAccountings">
+      <EntityTypeMapping TypeName="LionDbModel.IGameAccounting">
+        <MappingFragment StoreEntitySet="IGameAccounting">
+          <ScalarProperty Name="SessionLogID" ColumnName="SessionLogID" />
+          <ScalarProperty Name="IGameTransactionID" ColumnName="IGameTransactionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Languages">
+      <EntityTypeMapping TypeName="LionDbModel.Language">
+        <MappingFragment StoreEntitySet="Language">
+          <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+          <ScalarProperty Name="Language1" ColumnName="Language" />
+          <ScalarProperty Name="LanguageName" ColumnName="LanguageName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Machines">
+      <EntityTypeMapping TypeName="LionDbModel.Machine">
+        <MappingFragment StoreEntitySet="Machine">
+          <ScalarProperty Name="MachineID" ColumnName="MachineID" />
+          <ScalarProperty Name="MachineTypeID" ColumnName="MachineTypeID" />
+          <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+          <ScalarProperty Name="MachineName" ColumnName="MachineName" />
+          <ScalarProperty Name="MachinePassword" ColumnName="MachinePassword" />
+          <ScalarProperty Name="SharedSecret" ColumnName="SharedSecret" />
+          <ScalarProperty Name="MAC" ColumnName="MAC" />
+          <ScalarProperty Name="IP" ColumnName="IP" />
+          <ScalarProperty Name="LastPoll" ColumnName="LastPoll" />
+          <ScalarProperty Name="TeamviewerId" ColumnName="TeamviewerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MachineParameters">
+      <EntityTypeMapping TypeName="LionDbModel.MachineParameter">
+        <MappingFragment StoreEntitySet="MachineParameter">
+          <ScalarProperty Name="MachineParameterID" ColumnName="MachineParameterID" />
+          <ScalarProperty Name="MachineParameterGroupID" ColumnName="MachineParameterGroupID" />
+          <ScalarProperty Name="MachineID" ColumnName="MachineID" />
+          <ScalarProperty Name="ParameterName" ColumnName="ParameterName" />
+          <ScalarProperty Name="ParameterDescription" ColumnName="ParameterDescription" />
+          <ScalarProperty Name="ParameterValue" ColumnName="ParameterValue" />
+          <ScalarProperty Name="ParameterOrder" ColumnName="ParameterOrder" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MachineParameterGroups">
+      <EntityTypeMapping TypeName="LionDbModel.MachineParameterGroup">
+        <MappingFragment StoreEntitySet="MachineParameterGroup">
+          <ScalarProperty Name="MachineParameterGroupID" ColumnName="MachineParameterGroupID" />
+          <ScalarProperty Name="ParameterGroupName" ColumnName="ParameterGroupName" />
+          <ScalarProperty Name="ParameterGroupDescription" ColumnName="ParameterGroupDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MachineSessions">
+      <EntityTypeMapping TypeName="LionDbModel.MachineSession">
+        <MappingFragment StoreEntitySet="MachineSession">
+          <ScalarProperty Name="MachineSessionID" ColumnName="MachineSessionID" />
+          <ScalarProperty Name="MachineID" ColumnName="MachineID" />
+          <ScalarProperty Name="SessionStart" ColumnName="SessionStart" />
+          <ScalarProperty Name="SessionEnd" ColumnName="SessionEnd" />
+          <ScalarProperty Name="SessionEndTypeID" ColumnName="SessionEndTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MachineSessionEndTypes">
+      <EntityTypeMapping TypeName="LionDbModel.MachineSessionEndType">
+        <MappingFragment StoreEntitySet="MachineSessionEndType">
+          <ScalarProperty Name="SessionEndTypeID" ColumnName="SessionEndTypeID" />
+          <ScalarProperty Name="SessionEndName" ColumnName="SessionEndName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MachineSessionLogs">
+      <EntityTypeMapping TypeName="LionDbModel.MachineSessionLog">
+        <MappingFragment StoreEntitySet="MachineSessionLog">
+          <ScalarProperty Name="MachineSessionLogID" ColumnName="MachineSessionLogID" />
+          <ScalarProperty Name="MachineSessionID" ColumnName="MachineSessionID" />
+          <ScalarProperty Name="ActionID" ColumnName="ActionID" />
+          <ScalarProperty Name="LogTimeStamp" ColumnName="LogTimeStamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MachineTypes">
+      <EntityTypeMapping TypeName="LionDbModel.MachineType">
+        <MappingFragment StoreEntitySet="MachineType">
+          <ScalarProperty Name="MachineTypeID" ColumnName="MachineTypeID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Organizations">
+      <EntityTypeMapping TypeName="LionDbModel.Organization">
+        <MappingFragment StoreEntitySet="Organization">
+          <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+          <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+          <ScalarProperty Name="OrganizationTypeID" ColumnName="OrganizationTypeID" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="LockedTimeStamp" ColumnName="LockedTimeStamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrganizationRightRoleAssignments">
+      <EntityTypeMapping TypeName="LionDbModel.OrganizationRightRoleAssignment">
+        <MappingFragment StoreEntitySet="OrganizationRightRoleAssignment">
+          <ScalarProperty Name="OrganizationRightAssignmentID" ColumnName="OrganizationRightAssignmentID" />
+          <ScalarProperty Name="BaseCardID" ColumnName="BaseCardID" />
+          <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+          <ScalarProperty Name="RightID" ColumnName="RightID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrganizationTypes">
+      <EntityTypeMapping TypeName="LionDbModel.OrganizationType">
+        <MappingFragment StoreEntitySet="OrganizationType">
+          <ScalarProperty Name="OrganizationTypeID" ColumnName="OrganizationTypeID" />
+          <ScalarProperty Name="OrganizationTypeName" ColumnName="OrganizationTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Partners">
+      <EntityTypeMapping TypeName="LionDbModel.Partner">
+        <MappingFragment StoreEntitySet="Partner">
+          <ScalarProperty Name="PartnerID" ColumnName="PartnerID" />
+          <ScalarProperty Name="PartnerName" ColumnName="PartnerName" />
+          <ScalarProperty Name="PartnerDescription" ColumnName="PartnerDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Players">
+      <EntityTypeMapping TypeName="LionDbModel.Player">
+        <MappingFragment StoreEntitySet="Player">
+          <ScalarProperty Name="BaseCardID" ColumnName="BaseCardID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+          <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="MinumumBet" ColumnName="MinumumBet" />
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PlayerCards">
+      <EntityTypeMapping TypeName="LionDbModel.PlayerCard">
+        <MappingFragment StoreEntitySet="PlayerCard">
+          <ScalarProperty Name="PlayerRoleID" ColumnName="PlayerRoleID" />
+          <ScalarProperty Name="BaseCardID" ColumnName="BaseCardID" />
+          <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+          <ScalarProperty Name="IsOneTime" ColumnName="IsOneTime" />
+          <ScalarProperty Name="Balance" ColumnName="Balance" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Queries">
+      <EntityTypeMapping TypeName="LionDbModel.Query">
+        <MappingFragment StoreEntitySet="Query">
+          <ScalarProperty Name="QueryId" ColumnName="QueryId" />
+          <ScalarProperty Name="QueryName" ColumnName="QueryName" />
+          <ScalarProperty Name="HTMLTable" ColumnName="HTMLTable" />
+          <ScalarProperty Name="DBObjectType" ColumnName="DBObjectType" />
+          <ScalarProperty Name="LastUsed" ColumnName="LastUsed" />
+          <ScalarProperty Name="PagingActivePage" ColumnName="PagingActivePage" />
+          <ScalarProperty Name="BaseCardID" ColumnName="BaseCardID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QueryFields">
+      <EntityTypeMapping TypeName="LionDbModel.QueryField">
+        <MappingFragment StoreEntitySet="QueryField">
+          <ScalarProperty Name="QueryFieldId" ColumnName="QueryFieldId" />
+          <ScalarProperty Name="QueryId" ColumnName="QueryId" />
+          <ScalarProperty Name="PropertyName" ColumnName="PropertyName" />
+          <ScalarProperty Name="Datatype" ColumnName="Datatype" />
+          <ScalarProperty Name="Criteria" ColumnName="Criteria" />
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+          <ScalarProperty Name="SortDirection" ColumnName="SortDirection" />
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+          <ScalarProperty Name="HumanReadableCaption" ColumnName="HumanReadableCaption" />
+          <ScalarProperty Name="NoWildcardSearch" ColumnName="NoWildcardSearch" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Receipts">
+      <EntityTypeMapping TypeName="LionDbModel.Receipt">
+        <MappingFragment StoreEntitySet="Receipt">
+          <ScalarProperty Name="ReceiptID" ColumnName="ReceiptID" />
+          <ScalarProperty Name="BarCode" ColumnName="BarCode" />
+          <ScalarProperty Name="BaseCardID" ColumnName="BaseCardID" />
+          <ScalarProperty Name="PartnerID" ColumnName="PartnerID" />
+          <ScalarProperty Name="ReceiptAmount" ColumnName="ReceiptAmount" />
+          <ScalarProperty Name="TimeStampGranted" ColumnName="TimeStampGranted" />
+          <ScalarProperty Name="TimeStampInvalidated" ColumnName="TimeStampInvalidated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rights">
+      <EntityTypeMapping TypeName="LionDbModel.Right">
+        <MappingFragment StoreEntitySet="Right">
+          <ScalarProperty Name="RightID" ColumnName="RightID" />
+          <ScalarProperty Name="RightName" ColumnName="RightName" />
+          <ScalarProperty Name="RightDescription" ColumnName="RightDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="LionDbModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoleRights">
+      <EntityTypeMapping TypeName="LionDbModel.RoleRight">
+        <MappingFragment StoreEntitySet="RoleRight">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="RightID" ColumnName="RightID" />
+          <ScalarProperty Name="RoleDetailDescription" ColumnName="RoleDetailDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sessions">
+      <EntityTypeMapping TypeName="LionDbModel.Session">
+        <MappingFragment StoreEntitySet="Session">
+          <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+          <ScalarProperty Name="SessionStart" ColumnName="SessionStart" />
+          <ScalarProperty Name="SessionEnd" ColumnName="SessionEnd" />
+          <ScalarProperty Name="BaseCardID" ColumnName="BaseCardID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SessionLogs">
+      <EntityTypeMapping TypeName="LionDbModel.SessionLog">
+        <MappingFragment StoreEntitySet="SessionLog">
+          <ScalarProperty Name="SessionLogID" ColumnName="SessionLogID" />
+          <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+          <ScalarProperty Name="ActionID" ColumnName="ActionID" />
+          <ScalarProperty Name="MachineID" ColumnName="MachineID" />
+          <ScalarProperty Name="GameID" ColumnName="GameID" />
+          <ScalarProperty Name="LogTimeStamp" ColumnName="LogTimeStamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Settings">
+      <EntityTypeMapping TypeName="LionDbModel.Setting">
+        <MappingFragment StoreEntitySet="Settings">
+          <ScalarProperty Name="LossLimit" ColumnName="LossLimit" />
+          <ScalarProperty Name="PayInLimit" ColumnName="PayInLimit" />
+          <ScalarProperty Name="PayOutLimit" ColumnName="PayOutLimit" />
+          <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+          <ScalarProperty Name="SettingID" ColumnName="SettingID" />
+          <ScalarProperty Name="LastTimeOutCheck" ColumnName="LastTimeOutCheck" />
+          <ScalarProperty Name="OtcExpirationLimit" ColumnName="OtcExpirationLimit" />
+          <ScalarProperty Name="OtcExpirationThreshold" ColumnName="OtcExpirationThreshold" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Staffs">
+      <EntityTypeMapping TypeName="LionDbModel.Staff">
+        <MappingFragment StoreEntitySet="Staff">
+          <ScalarProperty Name="BaseCardID" ColumnName="BaseCardID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="LionDbModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Status">
+      <EntityTypeMapping TypeName="LionDbModel.Status">
+        <MappingFragment StoreEntitySet="Status">
+          <ScalarProperty Name="DbVersion" ColumnName="DbVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CardBlackList" TypeName="LionDbModel.CardBlackList" StoreEntitySet="CardBlackList">
+      <EndProperty Name="Game">
+        <ScalarProperty Name="GameID" ColumnName="GameID" />
+      </EndProperty>
+      <EndProperty Name="PlayerCard">
+        <ScalarProperty Name="BaseCardID" ColumnName="BaseCardID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="spGetMachineAccountancyReport" FunctionName="LionDbModel.Store.spGetMachineAccountancyReport" />
+    <FunctionImportMapping FunctionImportName="spGetPrevMachineAccountancyReport" FunctionName="LionDbModel.Store.spGetPrevMachineAccountancyReport" />
+    <EntitySetMapping Name="OrganizationPlayerRoleAssignments">
+      <EntityTypeMapping TypeName="LionDbModel.OrganizationPlayerRoleAssignment">
+        <MappingFragment StoreEntitySet="OrganizationPlayerRoleAssignment">
+          <ScalarProperty Name="GameID" ColumnName="GameID" />
+          <ScalarProperty Name="PlayerRoleID" ColumnName="PlayerRoleID" />
+          <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PlayerRoles">
+      <EntityTypeMapping TypeName="LionDbModel.PlayerRole">
+        <MappingFragment StoreEntitySet="PlayerRole">
+          <ScalarProperty Name="PlayerRoleName" ColumnName="PlayerRoleName" />
+          <ScalarProperty Name="PlayerRoleID" ColumnName="PlayerRoleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PlayerSpecialRights">
+      <EntityTypeMapping TypeName="LionDbModel.PlayerSpecialRight">
+        <MappingFragment StoreEntitySet="PlayerSpecialRight">
+          <ScalarProperty Name="Allowance" ColumnName="Allowance" />
+          <ScalarProperty Name="GameID" ColumnName="GameID" />
+          <ScalarProperty Name="BaseCardID" ColumnName="BaseCardID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spGetMachineTransactionHistoryReport" FunctionName="LionDbModel.Store.spGetMachineTransactionHistoryReport">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="LionDbModel.spGetMachineTransactionHistoryReport_Result">
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="AccountingTypeID" ColumnName="AccountingTypeID" />
+          <ScalarProperty Name="AccountingTimeStamp" ColumnName="AccountingTimeStamp" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetPrevMachineTransactionHistoryReport" FunctionName="LionDbModel.Store.spGetPrevMachineTransactionHistoryReport">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="LionDbModel.spGetPrevMachineTransactionHistoryReport_Result">
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="AccountingTypeID" ColumnName="AccountingTypeID" />
+          <ScalarProperty Name="AccountingTimeStamp" ColumnName="AccountingTimeStamp" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>
