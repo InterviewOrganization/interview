@@ -2,13 +2,11 @@
 using System.Configuration;
 using System.Data.Entity;
 using InterviewDb.Model;
-using NLog;
 
 namespace InterviewDb
 {
 	public class DbFactory
 	{
-		private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
 		#region private classes and enums
 		enum Mode
@@ -30,18 +28,10 @@ namespace InterviewDb
 
 		public virtual ILionDbContainer Create()
 		{
-			try
-			{
-				if (myMode == Mode.Normal)
-					return new LionDbContainer(CreateRaw());
+			if (myMode == Mode.Normal)
+				return new LionDbContainer(CreateRaw());
 
-				return new NoDisposeContainer(myCachedDbInConnection.Db);
-			}
-			catch (Exception ex)
-			{
-				Log.Error("Cannot find an entry in the config file for what database to take!", ex);
-				throw;
-			}
+			return new NoDisposeContainer(myCachedDbInConnection.Db);
 		}
 
 		/// <summary>
@@ -113,9 +103,9 @@ namespace InterviewDb
 
 		public void Dispose()
 		{
-			
+
 		}
-		
+
 		public void SaveAndPossiblyCommit()
 		{
 			Db.SaveChanges();
@@ -205,8 +195,6 @@ namespace InterviewDb
 
 	internal class NoDisposeTransactionContainer : ILionDbContainer
 	{
-		private static readonly Logger Log = LogManager.GetCurrentClassLogger();
-
 		private readonly LionDbContainerWithTransaction myContainerWithTransaction;
 
 		public NoDisposeTransactionContainer(LionDbContainerWithTransaction containerWithTransaction)
@@ -216,15 +204,14 @@ namespace InterviewDb
 
 		public void Dispose()
 		{
-			
+
 		}
 
 		public LionDbEntities Db { get { return myContainerWithTransaction.Db; } }
-		
+
 		public void SaveAndPossiblyCommit()
 		{
 			myContainerWithTransaction.Db.SaveChanges();
-			Log.Trace("No commit done as the container is in a higher scope");
 		}
 	}
 
