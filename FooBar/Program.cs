@@ -18,6 +18,8 @@ namespace Interview
 			//But for multiples of three print "Foo\n" instead of the number, and for the multiples of five print "Bar\n" instead of the number. 
 			//For numbers which are multiples of both three and five print "FooBar\n" instead of the number
 
+            var exampleClass = new ExampleClass(1, 100);
+            exampleClass.Print();
 
 			//Write a Unit Test / Tests for your just written program 
 		}

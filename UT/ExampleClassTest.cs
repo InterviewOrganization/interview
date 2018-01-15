@@ -12,13 +12,25 @@ namespace UT
 	public class ExampleClassTest
 	{
 		[Test]
-		public void TestMethod1()
+        [TestCase(0, 100)]
+        [TestCase(1, 1)]
+		[TestCase(5, 5)]
+		[TestCase(5, 1)]
+        public void testValidateParameters(int from, int to)
 		{
-			var sut = new ExampleClass();
-
-			var actual = sut.Foo();
-
-			Assert.AreEqual("bar", actual);
+		    Assert.Throws<ArgumentException>(() =>
+		        {
+		            var example = new ExampleClass(0, 100);
+		            example.Print();
+                }
+		    );
 		}
-	}
+
+	    [Test]
+	    public void testPrintSuccess()
+	    {
+	        var example = new ExampleClass(1, 100);
+	        example.Print();
+	    }
+    }
 }

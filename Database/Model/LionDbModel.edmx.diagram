@@ -8,7 +8,7 @@
         <AssociationConnector Association="LionDbModel.FK_Accounting_BaseCard" />
         <EntityTypeShape EntityType="LionDbModel.OrganizationStaffRole" Width="1.5" PointX="9.375" PointY="3.75" />
         <EntityTypeShape EntityType="LionDbModel.Accounting" Width="1.5" PointX="3" PointY="15.25" />
-        <EntityTypeShape EntityType="LionDbModel.AccountingClearanceType" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="LionDbModel.AccountingClearanceType" Width="1.5" PointX="0.75" PointY="0.5" />
         <EntityTypeShape EntityType="LionDbModel.AccountingType" Width="1.5" PointX="0.75" PointY="4.75" />
         <EntityTypeShape EntityType="LionDbModel.Action" Width="1.5" PointX="21" PointY="21.625" />
         <EntityTypeShape EntityType="LionDbModel.BaseCard" Width="1.5" PointX="21" PointY="11" />
