@@ -10,10 +10,10 @@
 	    public ExampleClass(int from, int to)
 	    {
             if(from < 1)
-	            throw new ArgumentException("from is greater than 0");
+	            throw new ArgumentException("from must be greater than 0");
 
             if(to < from)
-                throw new ArgumentException("'to' is greater than 'from'");
+                throw new ArgumentException("'to' must be greater than from");
 
 	        this.From = from;
 	        this.To = to;
